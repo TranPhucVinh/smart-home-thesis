@@ -1,0 +1,27 @@
+{
+  "name": "smart-farm",
+  "version": "1.0.0",
+  "description": "Smart farm project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TranPhucVinh/smart-farm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TranPhucVinh/smart-farm/issues"
+  },
+  "homepage": "https://github.com/TranPhucVinh/smart-farm#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "pg": "^7.4.3",
+    "ws": "^6.0.0"
+  }
+}

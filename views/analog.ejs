@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Smart farm</title>
+	<link rel="shortcut icon" href="images/favicon.png">
+  <link rel="stylesheet" href="css/src/bootstrap.min.css">
+	<link rel="stylesheet" href="css/device/skeleton.css">
+	<link rel="stylesheet" href="css/device/style.css">
+	<link rel="stylesheet" href="css/device/normalize.css">
+  <link rel="stylesheet" href="css/header.css">
+	<script type="text/javascript" src="js/device/analog.js"></script>
+</head>
+<body>
+	<div class="container">
+      <div class="navbar-spacer"></div>
+      <nav class="navbar">
+        <div class="container">
+          <ul class="navbar-list">
+            <li class="navbar-item"><a class="navbar-link" href="index.html">Dashboard</a></li>
+            <li class="navbar-item">
+              <a class="navbar-link" href="wifi.html">WiFi</a>
+            </li>
+            <li class="navbar-item"><a class="navbar-link" href="about.html">About</a></li>
+            <li class="navbar-item">
+              <a class="navbar-link" href="#" data-popover="#moreNavPopover">More</a>
+            </li>
+            <a href="logout" class="btn btn-info btn-lg pull-right">
+              <span class="glyphicon glyphicon-log-out"></span> Log out 
+            </a>
+            <a href="#" class="btn btn-info btn-lg pull-right">
+               <span class="glyphicon glyphicon glyphicon-user"></span>
+               <%= username %>
+            </a>
+          </ul>
+        </div>
+      </nav>
+
+      <section class="header">
+        <h6 class="docs-header">Smart Farm</h6>
+        <div class="row">
+
+        	<div class="offset-by-two four columns value-prop" align="center">
+						<h6 class="docs-header">LED</h6>
+						<div class="onoffswitch">
+							<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="led-switch" onclick="led()">
+							<label class="onoffswitch-label" for="led-switch">
+								<span class="onoffswitch-inner"></span>
+								<span class="onoffswitch-switch"></span>
+							</label>
+						</div>
+			</div>
+			<div class="row">
+          <div class="six columns value-prop">
+            Nhiệt Độ:<input type="text" name="" id="temp">&#176;C
+          </div>
+        </div>
+			<div class="row">
+         		 <div class="six columns value-prop">
+           			 <canvas id="volt-chart" height="200" width="480"></canvas>
+           			 <div class="six columns value-prop">
+           			 <p class="button">Voltage (V)</p>
+          		</div>
+        	</div>
+			</div>
+        </section>
+
+      <div class="docs-section" id="intro">
+        <h6 class="docs-header"><a href="#">©2018 - FPT Jetking</a></h6>
+      </div>
+
+    </div>
+    
+</body>
+</html>

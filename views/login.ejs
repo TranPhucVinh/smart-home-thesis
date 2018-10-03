@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form Design</title>
+	<link rel="shortcut icon" href="images/favicon.png">
+	<link rel="stylesheet" type="text/css" href="css/authentication/login.css"> 
+</head>
+<body>
+	<% var incorrect %>
+	<%= incorrect %>
+	<div class="loginBox"> <!-- Create a divison for login -->
+	<img src="images/avatar.jpg" class="avatar">
+		<h1>Login Here</h1>
+		<form method="post">
+			<p>Username</p>
+			<input type="text" name="username" placeholder="Enter Username">
+			<p>Password</p>
+			<input type="password" name="password" placeholder="Enter Password">
+			<input type="submit" value="Login">
+			<a href="sign-up"> Don't have an account ? Create an account here </a>
+		</form>
+	</div>
+</body>
+</html>
