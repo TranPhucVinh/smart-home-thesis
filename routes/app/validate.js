@@ -10,3 +10,5 @@ function validation(req, res) {
   var queryData = querystring.parse(uriData.query);
   res.send(queryData);
 }
+
+module.exports = router;
