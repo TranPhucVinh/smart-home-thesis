@@ -524,8 +524,6 @@ var WS = {
                             newRssiCell.appendChild(newRssiCellText);
                         }
                     }
-
-
             }
         };
     },
@@ -585,6 +583,8 @@ class Chart {
     }
 }
 
+//open websocket
+
     var url = window.location.host;
     var ws = new WebSocket('wss://' + url + '/ws');
 
@@ -603,11 +603,28 @@ window.onload = function() {
 
 };
 
+// ws.onmessage = function (evt) {
+//         // console.log(evt);
+//         // console.log("Data type: " + typeof(evt));
+//         var arr = evt.data.split('&');
+//         // console.log("Array " + arr[0]);
+//         if (arr[1] == "LED_OFF") {
+//             $('#'+arr[0]).attr('checked', false);
+//         }
+//         else if (arr[1] == "LED_ON") {
+//             $('#'+arr[0]).attr('checked', true);
+//         }
+//     };
+
+
  ws.onmessage = function (evt) {
-        if (evt.data == "LED_OFF") {
+
+    var arr = evt.data.split('&');
+
+        if (arr[1] == "LED_OFF") {
             ledID.checked = false;
         }
-        else if (evt.data == "LED_ON") {
+        else if (arr[1] == "LED_ON") {
             ledID.checked = true;
         }
     };

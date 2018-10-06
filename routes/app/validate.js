@@ -6,7 +6,7 @@ const pool = require('./../../database/database');
 
 
 
-router.post("/", validation);
+router.get("/", validation);
 function validation(req, res) {
  var returnArray = [];
   var uriData = url.parse(req.url);	
