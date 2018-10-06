@@ -4,9 +4,7 @@ var querystring = require('querystring');
 var url = require("url");
 const pool = require('./../../database/database');
 
-
-
-router.get("/", validation);
+router.post("/", validation);
 function validation(req, res) {
  var returnArray = [];
   var uriData = url.parse(req.url);	
