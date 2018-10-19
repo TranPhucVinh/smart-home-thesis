@@ -12,7 +12,7 @@ $(document).ready(function(){
   //   });
 $(".delete-room").click(function(){
         var id = $(this).attr("data-id");
-        var url = "room/delete/"+id;
+        var url = "floor/delete/"+id;
         if(confirm("Delete room ? ")){
             $.ajax({
                 url: url,
