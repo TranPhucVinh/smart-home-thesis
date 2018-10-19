@@ -15,10 +15,10 @@ $(document).ready(function(){
     //         }
     //     }); 
     // });
-     $(".delete-farm").click(function(){
+     $(".delete-house").click(function(){
         var id = $(this).attr("data-id");
         var url = "dashboard/delete/"+id;
-        if(confirm("Delete people ? ")){
+        if(confirm("Delete house ? ")){
             $.ajax({
                 url: url,
                 type: "DELETE",
@@ -28,7 +28,7 @@ $(document).ready(function(){
             });
         }
     });
-    $(".edit-farm").click(function(){
+    $(".edit-house").click(function(){
         $("#editid").val($(this).attr("data-id"));
         $("#editname").val($(this).attr("data-name"));
     });

@@ -9,7 +9,7 @@
   <script src="js/src/popper.min.js"></script>
   <script src="js/src/jquery-3.3.1.min.js"></script>
   <script src="js/src/bootstrap.min.js"></script>
-  <script src="js/house/house.js"></script>
+  <script src="js/floor/floor.js"></script>
 </head>
 <body>
 
@@ -93,11 +93,11 @@
   </form>
 
 <div class="collapse" id="id_<%= idArr[i] %>">
-            <button class="btn btn-default edit-area" data-id="<%= idArr[i] %>" data-name="<%= nameArr[i] %>">
+            <button class="btn btn-default edit-room" data-id="<%= idArr[i] %>" data-name="<%= nameArr[i] %>">
               <span class="glyphicon glyphicon-edit" aria-hidden="true" data-toggle="modal" data-target="#editModal"></span>
             </button>
-          <button class="btn btn-danger">
-            <span class="glyphicon glyphicon-remove delete-area" aria-hidden="true"data-id="<%= idArr[i] %>"></span>
+          <button class="btn btn-danger delete-room">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"data-id="<%= idArr[i] %>"></span>
           </button>
     </div>
   </div>
@@ -107,7 +107,7 @@
 </div>
 
       <div class="docs-section" id="intro">
-        <h6 class="docs-header" id="status_box"><a href="#">©2018 - FPT Jetking</a></h6>
+        <h6 class="docs-header" id="status_box"><a href="#">©2018 - Ho Chi Minh City University of Technology</a></h6>
       </div>
 
 <div id="editModal" class="modal fade" role="dialog">

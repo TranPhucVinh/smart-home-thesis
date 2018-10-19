@@ -58,11 +58,6 @@ function deleteHouse(req,res){
 		res.sendStatus(200);
 }
 
-// router.post("/login", loginSend);
-// function loginSend(req, res){
-// 	res.send(req.session.username);
-// }	
-
 router.post("/house",urlencodedParser, houseGet);
 function houseGet(req, res){
 	req.session.house = req.body.houseArr;

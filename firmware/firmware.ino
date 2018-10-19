@@ -1,9 +1,9 @@
 #include <ESP8266WiFi.h>
 #include <WebSocketsClient.h> //https://github.com/Links2004/arduinoWebSockets
 WebSocketsClient webSocket;
-const char* ssid = "ssid";
-const char* password = "password";
-const int LED = 16;
+const char* ssid = "Tenda_E62E80";
+const char* password = "0919201080";
+const int LED = 4;
 
 void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
   switch (type) { 
@@ -41,7 +41,7 @@ void setup() {
   Serial.println("");
   Serial.println("WiFi connected");  
   
-  webSocket.begin("smartfarm28082018.herokuapp.com", 80); //port 80 is designated port for external access
+  webSocket.begin("smarthome-thesis-bku.herokuapp.com", 80); //port 80 is designated port for external access
   webSocket.onEvent(webSocketEvent);
 }
 
@@ -49,9 +49,9 @@ void loop() {
   webSocket.loop();
   if (digitalRead(LED) == 0) {
  
-  webSocket.sendTXT("id_5&LED_ON");
+  webSocket.sendTXT("id_2&LED_ON");
   } else if (digitalRead(LED) == 1) {
  
-  webSocket.sendTXT("id_5&LED_OFF");
+  webSocket.sendTXT("id_2&LED_OFF");
   }
 }
