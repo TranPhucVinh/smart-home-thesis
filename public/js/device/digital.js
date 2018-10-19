@@ -16,6 +16,7 @@ ws.onopen = function() {
            ledID.checked = true;
         }
     };
+}
 
 function led() {
     var led_status = "LED_OFF";
@@ -24,5 +25,4 @@ function led() {
             led_status = "LED_ON";
          }
          ws.send(led_status);   
-}
 }
