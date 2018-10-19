@@ -7,7 +7,7 @@ const pool = require('./../../database/database');
 router.get("/", floorGet);
 function floorGet(req, res) {
 	var nameArr = [], idArr = [], i;
-	if (req.session.userid == undefined) {
+	if (req.session.username == undefined) {
 		res.redirect("/login");
 	}
 	else {

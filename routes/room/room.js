@@ -7,7 +7,7 @@ const pool = require('./../../database/database');
 router.get("/", devicesGet);
 function devicesGet(req, res) {
 	var nameArr = [], idArr = [], deviceType = [], i;
-	if (req.session.userid == undefined) {
+	if (req.session.username == undefined) {
 		res.redirect("/login");
 	}
 	else {
