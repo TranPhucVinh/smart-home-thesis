@@ -9,6 +9,11 @@ body {
   background-color: white;
 }
 
+.square.img{
+  height: 200px;
+  width: 200px;
+}
+
 .img {
 	max-width: 100%;
 }	
