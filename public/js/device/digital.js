@@ -1,7 +1,7 @@
 $(document).ready(function(){
     var url = window.location.host;
     var ws = new WebSocket('wss://' + url + '/ws');
-
+    var ledID;
 ws.onopen = function() {
         ws.send("Message to send");
 };
