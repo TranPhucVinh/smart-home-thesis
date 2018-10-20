@@ -15,7 +15,7 @@ ws.onopen = function() {
            ledID.checked = true;
         }
     };
-    var ledID = document.getElementById('led-switch');
+    
     $("input").click(function(){
         ledID = $(this).attr("id"); // get id of an on-click variable id
 
@@ -27,4 +27,4 @@ ws.onopen = function() {
         }
         ws.send(led_status);
     });
-}
+});
