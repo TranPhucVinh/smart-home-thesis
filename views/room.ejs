@@ -6,7 +6,6 @@
   <link rel="shortcut icon" href="images/shortcut.png">
 	<link rel="stylesheet" href="css/src/bootstrap.min.css">
 	<link rel="stylesheet" text="text/css" href="css/room/room.css">
-  <link rel="stylesheet" href="css/header.css">
   <script src="js/src/popper.min.js"></script>
   <script src="js/src/jquery-3.3.1.min.js"></script>
   <script src="js/src/bootstrap.min.js"></script>
@@ -96,6 +95,7 @@
   	<%	if ((deviceType[i] == "digital") || (deviceType[i] == "digital&analog")) { %>
   	<li>
   		<div class="square">
+        <img src="images/bulb.jpg" />
   		</div>  
   	<form method="POST" action="room/device" class="nameArr">
   		<input type="hidden" name="deviceType" value="<%= deviceType[i] %>">
@@ -132,7 +132,6 @@
             <span class="glyphicon glyphicon-remove delete-area" aria-hidden="true"data-id="<%= idArr[i] %>"></span>
           </button>
     </div>
-
   	</li>
   	<% } %>
 <% } %>
