@@ -1,6 +1,8 @@
+var ws;
+
 window.onload = function() {
     var url = window.location.host;
-    var ws = new WebSocket('wss://' + url + '/ws');
+    ws = new WebSocket('wss://' + url + '/ws');
     var ledID = document.getElementById('led-switch');
 
     ws.onopen = function() {
@@ -16,13 +18,13 @@ window.onload = function() {
            ledID.checked = true;
         }
     };
+}
 
-    function led() {
-        var led_status = "LED_OFF";
+function led() {
+    var led_status = "LED_OFF";
         if (ledID.checked)
             {
                 led_status = "LED_ON";
              }
-         ws.send(led_status);   
-    }    
-}
+    ws.send(led_status);   
+}    
