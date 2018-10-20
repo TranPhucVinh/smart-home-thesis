@@ -19,7 +19,7 @@ window.onload = function() {
 
     function led() {
         var led_status = "LED_OFF";
-        if (document.getElementById('led-switch').checked)
+        if (ledID.checked)
             {
                 led_status = "LED_ON";
              }
