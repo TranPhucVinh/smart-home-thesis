@@ -6,13 +6,14 @@ const pool = require('./../../database/database');
 
 router.get("/", deviceGet);
 function deviceGet(req, res) {
-	if (req.session.userid == undefined) {
+	if (req.session.username == undefined) {
 		res.redirect("/login");
 	}
 	else	if (req.session.deviceType == "digital")
 	res.render("digital", {username: req.session.username});
 	else if (req.session.deviceType == "analog")
 	res.render("analog", {username: req.session.username});
+	else res.redirect("/room");
 }
 
 module.exports = router;
