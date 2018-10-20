@@ -1,9 +1,9 @@
 var ws;
-
+ var ledID = document.getElementById('led-switch');
+ 
 window.onload = function() {
     var url = window.location.host;
     ws = new WebSocket('wss://' + url + '/ws');
-    var ledID = document.getElementById('led-switch');
 
     ws.onopen = function() {
         ws.send("Message to send");
