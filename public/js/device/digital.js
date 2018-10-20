@@ -2,11 +2,12 @@ $(document).ready(function(){
     var url = window.location.host;
     var ws = new WebSocket('wss://' + url + '/ws');
     var ledID;
-ws.onopen = function() {
-        ws.send("Message to send");
-};
 
- ws.onmessage = function (evt) {
+    ws.onopen = function() {
+        ws.send("Message to send");
+    };
+
+    ws.onmessage = function (evt) {
         var arr = evt.data.split('&');
         if (arr[1] == "LED_OFF") {
             ledID.checked = false;
