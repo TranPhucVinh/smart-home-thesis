@@ -18,7 +18,7 @@ $(".delete-room").click(function(){
                 url: url,
                 type: "DELETE",
                 success: function(result){
-                    window.location.href="/room";
+                    window.location.href="/floor";
                 }
             });
         }
