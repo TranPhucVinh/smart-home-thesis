@@ -9,7 +9,7 @@ body {
   background-color: white;
 }
 
-.square.img{
+#img{
   height: 200px;
   width: 200px;
 }
