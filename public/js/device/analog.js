@@ -585,11 +585,14 @@ class Chart {
 
 //open websocket
 
-    var url = window.location.host;
-    var ws = new WebSocket('wss://' + url + '/ws');
+    
+    var ws, ledID;
 
 window.onload = function() {
     ws.onopen = function() {
+        ws = new WebSocket('wss://' + url + '/ws');
+        ledID = document.getElementById('led-switch');
+        var url = window.location.host;
         ws.send("Message to send");
     };
 
@@ -601,22 +604,6 @@ window.onload = function() {
         volt.addTest();
     }, 500);
 
-};
-
-// ws.onmessage = function (evt) {
-//         // console.log(evt);
-//         // console.log("Data type: " + typeof(evt));
-//         var arr = evt.data.split('&');
-//         // console.log("Array " + arr[0]);
-//         if (arr[1] == "LED_OFF") {
-//             $('#'+arr[0]).attr('checked', false);
-//         }
-//         else if (arr[1] == "LED_ON") {
-//             $('#'+arr[0]).attr('checked', true);
-//         }
-//     };
-
-
  ws.onmessage = function (evt) {
 
     var arr = evt.data.split('&');
@@ -627,11 +614,12 @@ window.onload = function() {
         else if (arr[1] == "LED_ON") {
             ledID.checked = true;
         }
-    };
+    }
+}
     
 function led() {
     var led_status = "LED_OFF";
-    if (document.getElementById('led-switch').checked)
+    if (ledID.checked)
         {
             led_status = "LED_ON";
          }
