@@ -21,8 +21,7 @@ $(document).ready(function(){
         	$('#'+arr[0]).attr('checked', true);
         }
     }
-});
-    $("input").click(function(){
+     $("input").click(function(){
         ledID = $(this).attr("id"); // get id of an on-click variable id
 
 		var led_status = "LED_OFF";
@@ -33,3 +32,5 @@ $(document).ready(function(){
 		}
 		ws.send(led_status);
 	});
+});
+   
