@@ -1,13 +1,13 @@
 var ledID;
 var ws;
 
-window.onload = function(){
+$(document).ready(function(){
 	var url = window.location.host;
     	ws = new WebSocket('wss://' + url + '/ws');
 
 	ws.onopen = function() {
         ws.send("Message to send");
-    };   
+    }
 
     ws.onmessage = function (evt) {
         // console.log(evt);
@@ -20,8 +20,7 @@ window.onload = function(){
         else if (arr[1] == "LED_ON") {
         	$('#'+arr[0]).attr('checked', true);
         }
-    };
-}
+    }
 
     $("input").click(function(){
         ledID = $(this).attr("id"); // get id of an on-click variable id
@@ -34,4 +33,4 @@ window.onload = function(){
 		}
 		ws.send(led_status);
 	});
-
+});
