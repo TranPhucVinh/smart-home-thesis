@@ -21,7 +21,7 @@ window.onload = function(){
         	$('#'+arr[0]).attr('checked', true);
         }
     };
-});
+}
 
     $("input").click(function(){
         ledID = $(this).attr("id"); // get id of an on-click variable id
