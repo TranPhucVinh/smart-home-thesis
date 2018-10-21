@@ -1,7 +1,7 @@
 var ledID;
 var ws;
 
-$(document).ready(function(){
+window.onload = function(){
 	var url = window.location.host;
     	ws = new WebSocket('wss://' + url + '/ws');
 
@@ -21,6 +21,7 @@ $(document).ready(function(){
         	$('#'+arr[0]).attr('checked', true);
         }
     };
+});
 
     $("input").click(function(){
         ledID = $(this).attr("id"); // get id of an on-click variable id
@@ -33,4 +34,4 @@ $(document).ready(function(){
 		}
 		ws.send(led_status);
 	});
-});
+
