@@ -1,7 +1,9 @@
+var ledID;
+var ws;
+
 $(document).ready(function(){
-	var ledID;
 	var url = window.location.host;
-    var ws = new WebSocket('wss://' + url + '/ws');
+    	ws = new WebSocket('wss://' + url + '/ws');
 
 	ws.onopen = function() {
         ws.send("Message to send");
