@@ -6,9 +6,6 @@ $(document).ready(function(){
 	ws.onopen = function() {
         ws.send("Message to send");
     };   
-						
-    ws.onclose = function() { 
-    };
 
     ws.onmessage = function (evt) {
         // console.log(evt);
