@@ -589,12 +589,23 @@ class Chart {
     var ws, ledID;
 
 window.onload = function() {
-    ws.onopen = function() {
         ws = new WebSocket('wss://' + url + '/ws');
         ledID = document.getElementById('led-switch');
         var url = window.location.host;
+
+    ws.onopen = function() {
         ws.send("Message to send");
     };
+
+    ws.onmessage = function (evt) {
+    var arr = evt.data.split('&');
+        if (arr[1] == "LED_OFF") {
+            ledID.checked = false;
+        }
+        else if (arr[1] == "LED_ON") {
+            ledID.checked = true;
+        }
+    }
 
     if (document.getElementById('volt-chart') == null)
         return;
@@ -603,20 +614,8 @@ window.onload = function() {
     setInterval(function() {
         volt.addTest();
     }, 500);
-
- ws.onmessage = function (evt) {
-
-    var arr = evt.data.split('&');
-
-        if (arr[1] == "LED_OFF") {
-            ledID.checked = false;
-        }
-        else if (arr[1] == "LED_ON") {
-            ledID.checked = true;
-        }
-    }
 }
-    
+
 function led() {
     var led_status = "LED_OFF";
     if (ledID.checked)

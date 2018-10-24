@@ -16,7 +16,7 @@ var house = require("./routes/house/house");
 var floor = require("./routes/floor/floor");
 var room = require("./routes/room/room");
 var device = require("./routes/device/device");
-var validation = require("./routes/app/validate");
+var application = require("./routes/app/app");
 
 app.use(session({
   secret: 'smartfarm',
@@ -36,7 +36,7 @@ app.use("/house", house);
 app.use("/floor", floor);
 app.use("/room", room);
 app.use("/device", device);
-app.use("/validate", validation);
+app.use("/app", application);
 
 const server = http.createServer(app);
 
