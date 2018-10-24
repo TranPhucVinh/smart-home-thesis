@@ -1,14 +1,13 @@
+var ledID;
+var ws;
+
 $(document).ready(function(){
-	var ledID;
 	var url = window.location.host;
-    var ws = new WebSocket('wss://' + url + '/ws');
+    	ws = new WebSocket('wss://' + url + '/ws');
 
 	ws.onopen = function() {
         ws.send("Message to send");
-    };   
-						
-    ws.onclose = function() { 
-    };
+    }
 
     ws.onmessage = function (evt) {
         // console.log(evt);
@@ -21,9 +20,8 @@ $(document).ready(function(){
         else if (arr[1] == "LED_ON") {
         	$('#'+arr[0]).attr('checked', true);
         }
-    };
-
-    $("input").click(function(){
+    }
+     $("input").click(function(){
         ledID = $(this).attr("id"); // get id of an on-click variable id
 
 		var led_status = "LED_OFF";
@@ -35,3 +33,4 @@ $(document).ready(function(){
 		ws.send(led_status);
 	});
 });
+   
