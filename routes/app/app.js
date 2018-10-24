@@ -4,7 +4,7 @@ var querystring = require('querystring');
 var url = require("url");
 const pool = require('./../../database/database');
 
-router.get("/app.validate", validation);
+router.post("/app.validate", validation);
 function validation(req, res) {
  var returnArray = [];
   var uriData = url.parse(req.url);	
@@ -28,7 +28,7 @@ function validation(req, res) {
     });
 }
 
-router.get("/app.dashboard", dashboard);
+router.post("/app.dashboard", dashboard);
 function dashboard(req, res){
   var uriData = url.parse(req.url); 
   var queryData = querystring.parse(uriData.query);
@@ -53,7 +53,7 @@ function dashboard(req, res){
 });
 }
 
-router.get("/app.house", house);
+router.post("/app.house", house);
 function house(req, res){
   var uriData = url.parse(req.url); 
   var queryData = querystring.parse(uriData.query);
@@ -80,7 +80,7 @@ function house(req, res){
 });
 }
 
-router.get("/app.floor", floor);
+router.post("/app.floor", floor);
 function floor(req, res){
   var uriData = url.parse(req.url); 
   var queryData = querystring.parse(uriData.query);
