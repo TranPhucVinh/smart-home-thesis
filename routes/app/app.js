@@ -69,8 +69,8 @@ function house(req, res){
     if (result.rows.length != 0) {
       for (i=0; i<result.rows.length; i++){
         floorArray.push(result.rows[i].name);
-        jsonArray.floor = floorArray;
       }
+       jsonArray.floor = floorArray;
        returnArray.push(jsonArray);
        res.send(returnArray);
   }
@@ -98,8 +98,8 @@ function floor(req, res){
     if (result.rows.length != 0) {
           for (i=0; i<result.rows.length; i++){
             roomArray.push(result.rows[i].name);
-            jsonArray.room = roomArray;
         }
+        jsonArray.room = roomArray;
         returnArray.push(jsonArray);
         res.send(returnArray);
     }
@@ -109,7 +109,7 @@ function floor(req, res){
   });
 }
 
-router.post("/app.room", room);
+router.get("/app.room", room);
 function room(req, res){
   var uriData = url.parse(req.url); 
   var queryData = querystring.parse(uriData.query);
