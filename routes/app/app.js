@@ -115,8 +115,7 @@ function room(req, res){
   var queryData = querystring.parse(uriData.query);
 
   var returnArray = [], i;
-  var jsonArray = {"room": ""};
-  var deviceArray = [];
+  var jsonArray = {"room": []};
   var deviceJSON = {"name": "", "id": "","type": ""};
 
   var userid = queryData.userid;
@@ -132,9 +131,8 @@ function room(req, res){
           deviceJSON.name = result.rows[i].name;
           deviceJSON.id = result.rows[i].id;
           deviceJSON.type = result.rows[i].type;
-          deviceArray.push(deviceJSON);
+          jsonArray.room.push(deviceJSON);
         }
-        jsonArray.room = deviceArray;
         returnArray.push(jsonArray);
         res.send(returnArray);
   }
