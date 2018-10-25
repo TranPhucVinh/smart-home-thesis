@@ -109,4 +109,40 @@ function floor(req, res){
   });
 }
 
+router.post("/app.room", room);
+function room(req, res){
+  var uriData = url.parse(req.url); 
+  var queryData = querystring.parse(uriData.query);
+
+  var returnArray = [], i;
+  var jsonArray = {"room": []};
+  var deviceJSON = {"name": "", "id": "","type": ""};
+
+  var userid = queryData.userid;
+  var floorName = queryData.floorname;
+  var houseName = queryData.housename;
+  var roomName = queryData.roomname;
+
+  pool.query('select * from devices where housename=$1 and floorname=$2 and roomname=$3 and userid=$4',
+    [houseName, floorName, roomName, userid], (err, result) => {
+    if (result.rows.length != 0) {
+          for (i=0; i<result.rows.length; i++){
+          // nameArr.push(result.rows[i].name);
+          // idArr.push(result.rows[i].id);
+          // deviceType.push(result.rows[i].type);
+
+          // res.send(result.rows[i].name);
+          // res.send(result);
+          deviceJSON.name = result.rows[i].name;
+          deviceJSON.id = result.rows[i].id;
+          deviceJSON.type = result.rows[i].type;
+          jsonArray.room.push(deviceJSON);
+        }
+        returnArray.push(jsonArray);
+        res.send(returnArray);
+  }
+  		else res.send("unknown");
+	});
+}
+
 module.exports = router; 
