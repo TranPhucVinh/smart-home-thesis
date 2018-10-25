@@ -109,7 +109,7 @@ function floor(req, res){
   });
 }
 
-router.get("/app.room", room);
+router.post("/app.room", room);
 function room(req, res){
   var uriData = url.parse(req.url); 
   var queryData = querystring.parse(uriData.query);
