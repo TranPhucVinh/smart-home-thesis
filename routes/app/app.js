@@ -116,7 +116,6 @@ function room(req, res){
 
   var returnArray = [], i;
   var jsonArray = {"room": []};
-  var deviceJSON = {"name": "", "id": "","type": ""};
 
   var userid = queryData.userid;
   var floorName = queryData.floorname;
@@ -127,7 +126,7 @@ function room(req, res){
     [houseName, floorName, roomName, userid], (err, result) => {
     if (result.rows.length != 0) {
           for (i=0; i<result.rows.length; i++){
-
+          var deviceJSON = {"name": "", "id": "","type": ""};	
           deviceJSON.name = result.rows[i].name;
           deviceJSON.id = result.rows[i].id;
           deviceJSON.type = result.rows[i].type;
