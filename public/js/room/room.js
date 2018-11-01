@@ -41,11 +41,11 @@ $(document).ready(function(){
                 deviceJSON.status = arrayStatus[i];
                 returnArray.push(deviceJSON);
             }
-                console.log(arrayID);
-                console.log(arrayStatus);
                 console.log(returnArray);
             ws.send(returnArray);
         }
+        console.log(arrayID);
+        console.log(arrayStatus);
     }
      $("input").click(function(){
         ledID = $(this).attr("id"); // get id of an on-click variable id
