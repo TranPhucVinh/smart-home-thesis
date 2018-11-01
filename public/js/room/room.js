@@ -41,6 +41,7 @@ $(document).ready(function(){
                 deviceJSON.status = arrayStatus[i];
                 returnArray.push(deviceJSON);
             }
+                console.log(returnArray);
             ws.send(returnArray);
         }
     }
