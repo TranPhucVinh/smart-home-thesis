@@ -18,6 +18,7 @@ $(document).ready(function(){
         //create 2 array to store ID of each device and current status of LED
         var arrayID = [];
         var arrayStatus = [];
+        var returnArray = [];
 
         if (arr[1] == "LED_OFF") {
             $('#'+arr[0]).attr('checked', false);
@@ -37,8 +38,9 @@ $(document).ready(function(){
                 var deviceJSON = {"id": "", "status": ""};
                 deviceJSON.id = arrayID[i];
                 deviceJSON.status = arrayStatus[i];
+                returnArray.push(deviceJSON);
             }
-            ws.send(deviceJSON);
+            ws.send(returnArray);
         }
     }
      $("input").click(function(){
