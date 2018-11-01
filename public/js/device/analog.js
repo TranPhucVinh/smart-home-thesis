@@ -462,16 +462,15 @@
     exports.SmoothieChart = SmoothieChart
 })(typeof exports === 'undefined' ? this : exports);
 
-
 //Applicaiton code
-var volt, current, power, factor;
+var temp_chart;
 
-function setMsg(cls, text) {
-    sbox = document.getElementById('status_box');
-    sbox.className = "siimple-alert  siimple-alert--" + cls;
-    sbox.innerHTML = text;
-    console.log(text);
-}
+// function setMsg(cls, text) {
+//     sbox = document.getElementById('status_box');
+//     sbox.className = "siimple-alert  siimple-alert--" + cls;
+//     sbox.innerHTML = text;
+//     console.log(text);
+// }
 
 var WS = {
     ws: undefined,
@@ -482,49 +481,59 @@ var WS = {
         this.ws = new WebSocket(uri, ['arduino']);
         this.ws.binaryType = 'arraybuffer';
         this.ws.onopen = function(evt) {
-            setMsg("done", "WebSocket is open.");
+            // setMsg("done", "WebSocket is open.");
             WS.connected = true;
         };
         this.ws.onerror = function(evt) {
-            setMsg("error", "WebSocket error!");
+            // setMsg("error", "WebSocket error!");
             this.connected = false;
         };
         this.ws.onmessage = function(evt) {
             console.log(evt.data);
-            var data = JSON.parse(evt.data);
+            // var data = JSON.parse(evt.data);
             //🔓
-            if (data.status != 'ok')
-                return;
-            switch (data.action) {
-                case 'wifi':
-                    if (WS.instance) {
-                        WS.instance.innerHTML = WS.instance.getAttribute('data-name');
-                        WS.instance.disabled = false;
-                        WS.instance.className = 'button-primary';
-                    }
-                    if (WS.ref) {
-                        var tableRef = WS.ref.getElementsByTagName('tbody')[0];
-                        var tableRows = tableRef.getElementsByTagName('tr');
-                        for (var x = tableRef.rows.length - 1; x >= 0; x--) {
-                            tableRef.removeChild(tableRows[x]);
-                        }
-                        for (var i = 0; i < data.result.length; i++) {
-
-                            // Insert a row in the table at the last row
-                            var newRow = tableRef.insertRow(tableRef.rows.length);
-
-                            // Insert a cell in the row at index 0
-                            var newSsidCell = newRow.insertCell(0);
-                            var newRssiCell = newRow.insertCell(1);
-
-                            // Append a text node to the cell
-                            var newSsidCellText = '<a href="#" onclick="set_ssid(this.innerHTML)">' + data.result[i].ssid + '</a>';
-                            newSsidCell.innerHTML = newSsidCellText;
-                            var newRssiCellText = document.createTextNode(data.result[i].rssi == 0 ? '' : '🔓' + data.result[i].rssi);
-                            newRssiCell.appendChild(newRssiCellText);
-                        }
-                    }
+            var ledID = document.getElementById('led-switch');
+            var temp = document.getElementById('temp');
+            var arr = evt.data.split('&');
+            if (arr[1] == "LED_OFF") {
+                ledID.checked = false;
             }
+            else if (arr[1] == "LED_ON") {
+                ledID.checked = true;
+            }
+            temp.value = arr[2];        
+            // if (data.status != 'ok')
+            //     return;
+            // switch (data.action) {
+            //     case 'wifi':
+            //         if (WS.instance) {
+            //             WS.instance.innerHTML = WS.instance.getAttribute('data-name');
+            //             WS.instance.disabled = false;
+            //             WS.instance.className = 'button-primary';
+            //         }
+            //         if (WS.ref) {
+            //             var tableRef = WS.ref.getElementsByTagName('tbody')[0];
+            //             var tableRows = tableRef.getElementsByTagName('tr');
+            //             for (var x = tableRef.rows.length - 1; x >= 0; x--) {
+            //                 tableRef.removeChild(tableRows[x]);
+            //             }
+            //             for (var i = 0; i < data.result.length; i++) {
+
+            //                 // Insert a row in the table at the last row
+            //                 var newRow = tableRef.insertRow(tableRef.rows.length);
+
+            //                 // Insert a cell in the row at index 0
+            //                 var newSsidCell = newRow.insertCell(0);
+            //                 var newRssiCell = newRow.insertCell(1);
+
+            //                 // Append a text node to the cell
+            //                 var newSsidCellText = '<a href="#" onclick="set_ssid(this.innerHTML)">' + data.result[i].ssid + '</a>';
+            //                 newSsidCell.innerHTML = newSsidCellText;
+            //                 var newRssiCellText = document.createTextNode(data.result[i].rssi == 0 ? '' : '🔓' + data.result[i].rssi);
+            //                 newRssiCell.appendChild(newRssiCellText);
+            //             }
+            //         }
+            temp_chart.add(new Date().getTime(), arr[2]);
         };
     },
     write: function(data) {
@@ -585,44 +594,15 @@ class Chart {
 
 //open websocket
 
-    
-    var ws, ledID;
-
 window.onload = function() {
-        ws = new WebSocket('wss://' + url + '/ws');
-        ledID = document.getElementById('led-switch');
         var url = window.location.host;
+        WS.open('wss://' + url + '/ws');
 
-    ws.onopen = function() {
-        ws.send("Message to send");
-    };
-
-    ws.onmessage = function (evt) {
-    var arr = evt.data.split('&');
-        if (arr[1] == "LED_OFF") {
-            ledID.checked = false;
-        }
-        else if (arr[1] == "LED_ON") {
-            ledID.checked = true;
-        }
-    }
-
-    if (document.getElementById('volt-chart') == null)
-        return;
-    volt = new Chart('volt-chart', 500, 0, 220);
+    temp_chart = new Chart("temp-chart", 500, 0, 50);
 
     setInterval(function() {
         volt.addTest();
     }, 500);
-}
-
-function led() {
-    var led_status = "LED_OFF";
-    if (ledID.checked)
-        {
-            led_status = "LED_ON";
-         }
-         ws.send(led_status);   
 }
 
 function scan(el) {
@@ -635,4 +615,14 @@ function scan(el) {
 function set_ssid(value) {
     console.log(value);
     document.getElementById('ssid').value = value;
+}
+
+function led() {
+  var ledID  = document.getElementById('led-switch');
+    var led_status = "LED_OFF";
+    if (ledID.checked)
+        {
+            led_status = "LED_ON";
+         }
+         WS.write(led_status);
 }
