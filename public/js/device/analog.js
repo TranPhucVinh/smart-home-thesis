@@ -601,7 +601,7 @@ window.onload = function() {
     temp_chart = new Chart("temp-chart", 500, 0, 50);
 
     setInterval(function() {
-        volt.addTest();
+        temp_chart.addTest();
     }, 500);
 }
 
