@@ -1,5 +1,6 @@
 var ledID;
 var ws;
+var i;
 
 $(document).ready(function(){
 	var url = window.location.host;
@@ -34,7 +35,7 @@ $(document).ready(function(){
         }
         if (evt.data == "App websocket is opened"){
             console.log(evt);
-            for(var i=0; i<arrayID.length ; i++){
+            for(i=0; i<arrayID.length ; i++){
                 var deviceJSON = {"id": "", "status": ""};
                 deviceJSON.id = arrayID[i];
                 deviceJSON.status = arrayStatus[i];
