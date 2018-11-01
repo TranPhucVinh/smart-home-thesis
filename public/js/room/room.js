@@ -32,10 +32,11 @@ $(document).ready(function(){
             ws.send(arr[0]+"&received");
         }
         if (evt.data == "App websocket is opened"){
+            console.log(evt);
             for(int i=0; i<arrayID.length(); i++){
                 var deviceJSON = {"id": "", "status": ""};
-                device.id = arrayID[i];
-                device.status = arrayStatus[i];
+                deviceJSON.id = arrayID[i];
+                deviceJSON.status = arrayStatus[i];
             }
             ws.send(deviceJSON);
         }
