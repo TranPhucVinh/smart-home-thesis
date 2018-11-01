@@ -14,13 +14,30 @@ $(document).ready(function(){
         // console.log("Data type: " + typeof(evt));
         var arr = evt.data.split('&');
         // console.log("Array " + arr[0]);
+
+        //create 2 array to store ID of each device and current status of LED
+        var arrayID = [];
+        var arrayStatus = [];
+
         if (arr[1] == "LED_OFF") {
             $('#'+arr[0]).attr('checked', false);
+            arrayID.push(arr[0]);
+            arrayStatus.push(false);
             ws.send(arr[0]+"&received");
         }
         else if (arr[1] == "LED_ON") {
         	$('#'+arr[0]).attr('checked', true);
+            arrayID.push(arr[0]);
+            arrayStatus.push(true);
             ws.send(arr[0]+"&received");
+        }
+        if (evt.data == "App websocket is opened"){
+            for(int i=0; i<arrayID.length(); i++){
+                var deviceJSON = {"id": "", "status": ""};
+                device.id = arrayID[i];
+                device.status = arrayStatus[i];
+            }
+            ws.send(deviceJSON);
         }
     }
      $("input").click(function(){
