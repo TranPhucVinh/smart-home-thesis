@@ -33,7 +33,7 @@ $(document).ready(function(){
         }
         if (evt.data == "App websocket is opened"){
             console.log(evt);
-            for(int i=0; i<arrayID.length ; i++){
+            for(var i=0; i<arrayID.length ; i++){
                 var deviceJSON = {"id": "", "status": ""};
                 deviceJSON.id = arrayID[i];
                 deviceJSON.status = arrayStatus[i];
