@@ -4,6 +4,7 @@ WebSocketsClient webSocket;
 const char* ssid = "Hiep";
 const char* password = "nhungdoicanh";
 const int LED = 2;
+int received = 0;
 
 void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
   switch (type) { 
@@ -15,10 +16,14 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
       break;
     case WStype_TEXT: 
       Serial.printf("[WSc] get text: %s\n", payload);
-      if(strcmp((char*)payload, "LED_ON") == 0) {
+      if(strcmp((char*)payload, "id_9&LED_ON") == 0) {
       digitalWrite(LED, 0); // Khi client phát sự kiện "LED_ON" thì server sẽ bật LED
-    } else if(strcmp((char*)payload, "LED_OFF") == 0) {
+    } else if(strcmp((char*)payload, "id_9&LED_OFF") == 0) {
       digitalWrite(LED, 1); // Khi client phát sự kiện "LED_OFF" thì server sẽ tắt LED
+    } else if(strcmp((char*)payload, "id_9&received") == 0){
+      received = 1;
+    } else if(strcmp((char*)payload, "Websocket is open") == 0){
+      received = 0;
     }
       break; 
     case WStype_BIN:
@@ -47,11 +52,9 @@ void setup() {
 
 void loop() {
   webSocket.loop();
-  if (digitalRead(LED) == 0) {
- 
-  webSocket.sendTXT("id_2&LED_ON");
-  } else if (digitalRead(LED) == 1) {
- 
-  webSocket.sendTXT("id_2&LED_OFF");
+  if ((digitalRead(LED) == 0)&&(received==0)) {
+  webSocket.sendTXT("id_9&LED_ON");
+  } else if ((digitalRead(LED) == 1)&&(received==0)) { 
+  webSocket.sendTXT("id_9&LED_OFF");
   }
 }

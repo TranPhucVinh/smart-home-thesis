@@ -32,7 +32,7 @@ $(document).ready(function(){
 	// use $('#'+ledID).is(':checked') in Jquery, not like id.checked in JS			
 			led_status = "LED_ON";
 		}
-		ws.send(ws.send(ledID+"&"+led_status);
+		ws.send(ledID+"&"+led_status);
 	});
         $(".delete-device").click(function(){
         var id = $(this).attr("data-id");
