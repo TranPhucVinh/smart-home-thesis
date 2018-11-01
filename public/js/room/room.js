@@ -1,6 +1,8 @@
 var ledID;
 var ws;
 var i;
+var arrayStatus = [];
+var returnArray = [];
 
 $(document).ready(function(){
 	var url = window.location.host;
@@ -18,8 +20,6 @@ $(document).ready(function(){
 
         //create 2 array to store ID of each device and current status of LED
         var arrayID = [];
-        var arrayStatus = [];
-        var returnArray = [];
 
         if (arr[1] == "LED_OFF") {
             $('#'+arr[0]).attr('checked', false);
