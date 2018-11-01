@@ -6,7 +6,7 @@ $(document).ready(function(){
     	ws = new WebSocket('wss://' + url + '/ws');
 
 	ws.onopen = function() {
-        ws.send("Message to send");
+        ws.send("Websocket is open");
     }
 
     ws.onmessage = function (evt) {
@@ -16,9 +16,11 @@ $(document).ready(function(){
         // console.log("Array " + arr[0]);
         if (arr[1] == "LED_OFF") {
             $('#'+arr[0]).attr('checked', false);
+            ws.send(arr[0]+"&received");
         }
         else if (arr[1] == "LED_ON") {
         	$('#'+arr[0]).attr('checked', true);
+            ws.send(arr[0]+"&received");
         }
     }
      $("input").click(function(){
@@ -30,7 +32,24 @@ $(document).ready(function(){
 	// use $('#'+ledID).is(':checked') in Jquery, not like id.checked in JS			
 			led_status = "LED_ON";
 		}
-		ws.send(led_status);
+		ws.send(ws.send(ledID+"&"+led_status);
 	});
+        $(".delete-device").click(function(){
+        var id = $(this).attr("data-id");
+        var url = "room/delete/"+id;
+        if(confirm("Delete device ? ")){
+            $.ajax({
+                url: url,
+                type: "DELETE",
+                success: function(result){
+                    window.location.href="/room";
+                }
+            });
+        }
+    });
+    $(".edit-device").click(function(){
+        $("#editid").val($(this).attr("data-id"));
+        $("#editname").val($(this).attr("data-name"));
+    });
 });
    

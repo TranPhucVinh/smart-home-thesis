@@ -56,4 +56,19 @@ function devicePost(req, res) {
 	req.session.deviceType = req.body.deviceType;
 	res.redirect("/device");
 }
+
+router.post("/edit", urlencodedParser, editPost);
+function editPost(req, res){
+	pool.query('update devices set name=$1 where id=$2',
+		[req.body.editname, req.body.editid]);
+		res.redirect("/room");
+}
+
+router.delete("/delete/:id", urlencodedParser, deleteDevices);
+function deleteDevices(req,res){
+	pool.query('delete from devices where id=$1',
+		[req.params.id]);
+		res.sendStatus(200);
+}
+
 module.exports = router;
