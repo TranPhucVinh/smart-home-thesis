@@ -9,8 +9,7 @@ var arrMessage = [];
 
 $(document).ready(function(){
 	var url = window.location.host;
-    	ws = new WebSocket('wss://' + url + '/ws');
-
+    ws = new WebSocket('wss://' + url + '/ws');
 	ws.onopen = function() {
         ws.send("Websocket is open");
     }
@@ -28,7 +27,7 @@ $(document).ready(function(){
                 arrayID.push(arr[0]);
                 arrayStatus.push(false);
             }
-            for (i=0;i<arrayID[arrayID.length];i++){
+            for (i=0;i < arrayID.length;i++){
                 if (arr[0] != arrayID[i])
                     duplicate = 1;
             }
@@ -45,7 +44,7 @@ $(document).ready(function(){
                 arrayID.push(arr[0]);
                 arrayStatus.push(true);
             }
-            for (i=0;i<arrayID[arrayID.length];i++){
+            for (i=0;i<arrayID.length;i++){
                 if (arr[0] != arrayID[i])
                     duplicate = 1;
             }
