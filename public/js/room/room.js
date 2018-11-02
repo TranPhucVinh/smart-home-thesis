@@ -26,6 +26,7 @@ $(document).ready(function(){
             $('#'+arr[0]).attr('checked', false);
             if (arrayID.length == 0) {
                 arrayID.push(arr[0]);
+                arrayStatus.push(false);
             }
             if (arr[0] != arrayID[arrayID.length - 1]){
                 arrayID.push(arr[0]);
@@ -38,6 +39,7 @@ $(document).ready(function(){
 
             if (arrayID.length == 0) {
                 arrayID.push(arr[0]);
+                arrayStatus.push(true);
             }
             if (arr[0] != arrayID[arrayID.length - 1]){
                 arrayID.push(arr[0]);
