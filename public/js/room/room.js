@@ -43,8 +43,6 @@ $(document).ready(function(){
                 arrayID.push(arr[0]);
                 arrayStatus.push(true);    
             }
-            arrayID.push(arr[0]);
-            arrayStatus.push(true);
             ws.send(arr[0]+"&received");
         }
         if (evt.data == "App websocket is opened"){
