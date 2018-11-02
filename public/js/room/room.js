@@ -28,7 +28,7 @@ $(document).ready(function(){
                 arrayStatus.push(false);
             }
             for (i=0;i < arrayID.length;i++){
-                if (arr[0] != arrayID[i])
+                if (arr[0] == arrayID[i])
                     duplicate = 1;
             }
             if (duplicate == 0){
@@ -45,7 +45,7 @@ $(document).ready(function(){
                 arrayStatus.push(true);
             }
             for (i=0;i<arrayID.length;i++){
-                if (arr[0] != arrayID[i])
+                if (arr[0] == arrayID[i])
                     duplicate = 1;
             }
             if (duplicate == 0){
