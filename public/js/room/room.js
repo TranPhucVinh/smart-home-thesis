@@ -1,6 +1,6 @@
 var ledID;
 var ws;
-var i;
+var i, duplicate = 0;
 var arrayStatus = [];
 var returnArray = [];
  //create 2 array to store ID of each device and current status of LED
@@ -27,6 +27,10 @@ $(document).ready(function(){
             if (arrayID.length == 0) {
                 arrayID.push(arr[0]);
                 arrayStatus.push(false);
+            }
+            for (i=0;i<arrayID[arrayID.length];i++){
+                if (arr[0] != arrayID[i])
+                    duplicate = 1;
             }
             if (arr[0] != arrayID[arrayID.length - 1]){
                 arrayID.push(arr[0]);
