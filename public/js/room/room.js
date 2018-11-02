@@ -32,7 +32,7 @@ $(document).ready(function(){
                 if (arr[0] != arrayID[i])
                     duplicate = 1;
             }
-            if (arr[0] != arrayID[arrayID.length - 1]){
+            if (duplicate == 0){
                 arrayID.push(arr[0]);
                 arrayStatus.push(false);    
             }
@@ -45,7 +45,11 @@ $(document).ready(function(){
                 arrayID.push(arr[0]);
                 arrayStatus.push(true);
             }
-            if (arr[0] != arrayID[arrayID.length - 1]){
+            for (i=0;i<arrayID[arrayID.length];i++){
+                if (arr[0] != arrayID[i])
+                    duplicate = 1;
+            }
+            if (duplicate == 0){
                 arrayID.push(arr[0]);
                 arrayStatus.push(true);    
             }
