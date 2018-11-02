@@ -3,6 +3,9 @@ var ws;
 var i;
 var arrayStatus = [];
 var returnArray = [];
+ //create 2 array to store ID of each device and current status of LED
+var arrayID = [];
+var arrMessage = [];
 
 $(document).ready(function(){
 	var url = window.location.host;
@@ -15,20 +18,31 @@ $(document).ready(function(){
     ws.onmessage = function (evt) {
         // console.log(evt);
         // console.log("Data type: " + typeof(evt));
-        var arr = evt.data.split('&');
-        // console.log("Array " + arr[0]);
 
-        //create 2 array to store ID of each device and current status of LED
-        var arrayID = [];
+        var arr = evt.data.split('&');
+        // console.log("Array " + arr[0]);        
 
         if (arr[1] == "LED_OFF") {
             $('#'+arr[0]).attr('checked', false);
-            arrayID.push(arr[0]);
-            arrayStatus.push(false);
+            if (arrayID.length == 0) {
+                arrayID.push(arr[0]);
+            }
+            if (arr[0] != arrayID[arrayID.length - 1]){
+                arrayID.push(arr[0]);
+                arrayStatus.push(false);    
+            }
             ws.send(arr[0]+"&received");
         }
         else if (arr[1] == "LED_ON") {
         	$('#'+arr[0]).attr('checked', true);
+
+            if (arrayID.length == 0) {
+                arrayID.push(arr[0]);
+            }
+            if (arr[0] != arrayID[arrayID.length - 1]){
+                arrayID.push(arr[0]);
+                arrayStatus.push(true);    
+            }
             arrayID.push(arr[0]);
             arrayStatus.push(true);
             ws.send(arr[0]+"&received");
@@ -42,7 +56,7 @@ $(document).ready(function(){
                 returnArray.push(deviceJSON);
             }
                 console.log(returnArray);
-            ws.send(returnArray);
+                ws.send(returnArray);
         }
         console.log(arrayID);
         console.log(arrayStatus);
@@ -76,4 +90,3 @@ $(document).ready(function(){
         $("#editname").val($(this).attr("data-name"));
     });
 });
-   
