@@ -35,10 +35,10 @@ $(document).ready(function(){
             }
             if (duplicate == 0){
                 arrayID.push(arr[0]);
-                arrayStatus.push(false);
-                duplicate = 0;    
+                arrayStatus.push(false);    
             }
             ws.send(arr[0]+"&received");
+            duplicate = 0;
         }
         else if (arr[1] == "LED_ON") {
         	$('#'+arr[0]).attr('checked', true);
@@ -53,10 +53,10 @@ $(document).ready(function(){
             }
             if (duplicate == 0){
                 arrayID.push(arr[0]);
-                arrayStatus.push(true);
-                duplicate = 0;    
+                arrayStatus.push(true); 
             }
             ws.send(arr[0]+"&received");
+            duplicate = 0;
         }
         if (evt.data == "App websocket is opened"){
             console.log(evt);
