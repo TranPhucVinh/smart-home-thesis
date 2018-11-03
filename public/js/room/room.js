@@ -1,11 +1,13 @@
 var ledID;
 var ws;
 var i, duplicate = 0;
+
+var arrayID = [];
 var arrayStatus = [];
+
 var returnArray = [];
  //create 2 array to store ID of each device and current status of LED
-var arrayID = [];
-var arrMessage = [];
+
 
 $(document).ready(function(){
 	var url = window.location.host;
@@ -33,7 +35,8 @@ $(document).ready(function(){
             }
             if (duplicate == 0){
                 arrayID.push(arr[0]);
-                arrayStatus.push(false);    
+                arrayStatus.push(false);
+                duplicate = 0;    
             }
             ws.send(arr[0]+"&received");
         }
@@ -50,7 +53,8 @@ $(document).ready(function(){
             }
             if (duplicate == 0){
                 arrayID.push(arr[0]);
-                arrayStatus.push(true);    
+                arrayStatus.push(true);
+                duplicate = 0;    
             }
             ws.send(arr[0]+"&received");
         }
