@@ -18,33 +18,27 @@ $(document).ready(function(){
         if (arr[1] == "LED_OFF") {
 
             $('#'+arr[0]).attr('checked', false);
-            ws.send(arr[0]+"&received");
 
             $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
                 data: {id: arr[0],
-                status: false},
-                success: function(result){
-                    window.location.href="/room";
-            }
+                status: false}
         });
 
+            ws.send(arr[0]+"&received");
         }
         else if (arr[1] == "LED_ON") {
         	$('#'+arr[0]).attr('checked', true);
-            ws.send(arr[0]+"&received");
 
             $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
                 data: {id: arr[0],
-                status: true},
-                success: function(result){
-                    window.location.href="/room";
-            }
+                status: true}
         });
 
+            ws.send(arr[0]+"&received");
         }
     }
      $("input").click(function(){
