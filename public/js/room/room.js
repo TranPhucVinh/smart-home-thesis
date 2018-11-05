@@ -37,7 +37,7 @@ $(document).ready(function(){
                 type:"GET",
                 async: true,
                 data: {name: "abc",
-                status: "booleanValue"},
+                status: "booleanValue"}
         });
 
 			led_status = "LED_ON";
@@ -46,7 +46,7 @@ $(document).ready(function(){
                 type:"GET",
                 async: true,
                 data: {name: "data",
-                status: "false"},
+                status: "false"}
             });
         }
 
