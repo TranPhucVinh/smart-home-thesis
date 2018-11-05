@@ -16,33 +16,12 @@ $(document).ready(function(){
         // console.log("Array " + arr[0]);        
 
         if (arr[1] == "LED_OFF") {
-
             $('#'+arr[0]).attr('checked', false);
-
-            $.ajax({url: "app/app.device",
-                type:"GET",
-                async: true,
-                data: {id: "data",
-                status: "false"},
-                success: function(result){
-                }
-        });
 
             ws.send(arr[0]+"&received");
         }
         else if (arr[1] == "LED_ON") {
-        	$('#'+arr[0]).attr('checked', true);
-            let stringID = "arr[0]";
-            let booleanValue = "true";
-            $.ajax({url: "app/app.device",
-                type:"GET",
-                async: true,
-                data: {name: stringID,
-                status: booleanValue},
-                success: function(result){
-                }
-        });
-
+        	$('#'+arr[0]).attr('checked', true);            
             ws.send(arr[0]+"&received");
         }
     }
@@ -52,10 +31,27 @@ $(document).ready(function(){
 		var led_status = "LED_OFF";
 
 		if ($('#'+ledID).is(':checked')) {
-	// use $('#'+ledID).is(':checked') in Jquery, not like id.checked in JS			
+	// use $('#'+ledID).is(':checked') in Jquery, not like id.checked in JS	
+
+    $.ajax({url: "app/app.device",
+                type:"GET",
+                async: true,
+                data: {name: "abc",
+                status: "booleanValue"},
+        });
+
 			led_status = "LED_ON";
-		}
+		} else {
+            $.ajax({url: "app/app.device",
+                type:"GET",
+                async: true,
+                data: {name: "data",
+                status: "false"},
+            });
+        }
+
 		ws.send(ledID+"&"+led_status);
+
 	});
         $(".delete-device").click(function(){
         var id = $(this).attr("data-id");
