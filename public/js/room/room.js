@@ -37,7 +37,7 @@ $(document).ready(function(){
             $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
-                data: {id: stringID,
+                data: {name: stringID,
                 status: booleanValue},
                 success: function(result){
                 }
