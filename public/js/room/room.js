@@ -1,13 +1,5 @@
 var ledID;
 var ws;
-var i, duplicate = 0;
-
-var arrayID = [];
-var arrayStatus = [];
-
-var returnArray = [];
- //create 2 array to store ID of each device and current status of LED
-
 
 $(document).ready(function(){
 	var url = window.location.host;
@@ -24,53 +16,36 @@ $(document).ready(function(){
         // console.log("Array " + arr[0]);        
 
         if (arr[1] == "LED_OFF") {
+
             $('#'+arr[0]).attr('checked', false);
-            if (arrayID.length == 0) {
-                arrayID.push(arr[0]);
-                arrayStatus.push(false);
-            }
-            for (i=0;i < arrayID.length;i++){
-                if (arr[0] == arrayID[i])
-                    duplicate = 1;
-            }
-            if (duplicate == 0){
-                arrayID.push(arr[0]);
-                arrayStatus.push(false);    
-            }
             ws.send(arr[0]+"&received");
-            duplicate = 0;
+
+            $.ajax({url: "app/app.device",
+                type:"GET",
+                async: true,
+                data: {id: arr[0],
+                status: false},
+                success: function(result){
+                    window.location.href="/room";
+            }
+        });
+
         }
         else if (arr[1] == "LED_ON") {
         	$('#'+arr[0]).attr('checked', true);
-
-            if (arrayID.length == 0) {
-                arrayID.push(arr[0]);
-                arrayStatus.push(true);
-            }
-            for (i=0;i<arrayID.length;i++){
-                if (arr[0] == arrayID[i])
-                    duplicate = 1;
-            }
-            if (duplicate == 0){
-                arrayID.push(arr[0]);
-                arrayStatus.push(true); 
-            }
             ws.send(arr[0]+"&received");
-            duplicate = 0;
-        }
-        if (evt.data == "App websocket is opened"){
-            console.log(evt);
-            for(i=0; i<arrayID.length ; i++){
-                var deviceJSON = {"id": "", "status": ""};
-                deviceJSON.id = arrayID[i];
-                deviceJSON.status = arrayStatus[i];
-                returnArray.push(deviceJSON);
+
+            $.ajax({url: "app/app.device",
+                type:"GET",
+                async: true,
+                data: {id: arr[0],
+                status: true},
+                success: function(result){
+                    window.location.href="/room";
             }
-                console.log(returnArray);
-                ws.send(returnArray);
+        });
+
         }
-        console.log(arrayID);
-        console.log(arrayStatus);
     }
      $("input").click(function(){
         ledID = $(this).attr("id"); // get id of an on-click variable id

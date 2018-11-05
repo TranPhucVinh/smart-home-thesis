@@ -139,4 +139,8 @@ function room(req, res){
 	});
 }
 
+router.get("/app.device", device);
+function device(req, res){
+  var deviceJSON = {"id": "", "status": ""};
+}
 module.exports = router; 
