@@ -141,7 +141,7 @@ function room(req, res){
 
 var deviceStatus = [];
 
-router.get("/app.device", device);
+router.get("/app.device", urlencodedParser, device);
 function device(req, res){
   var deviceJSON = {"id": "", "status": ""};
   deviceJSON.id = req.body.id;
