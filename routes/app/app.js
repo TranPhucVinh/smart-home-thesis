@@ -140,7 +140,8 @@ function room(req, res){
   		else res.send("unknown");
 	});
 }
-
+  
+var deviceStatus = [];
 router.get("/app.device", urlencodedParser, device);
 function device(req, res){
   var deviceJSON = {"id": "", "status": ""};
