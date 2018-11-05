@@ -22,8 +22,8 @@ $(document).ready(function(){
             $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
-                data: {id: arr[0],
-                status: false},
+                data: {id: "data",
+                status: "false"},
                 async: true
         });
 
@@ -35,8 +35,8 @@ $(document).ready(function(){
             $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
-                data: {id: arr[0],
-                status: true},
+                data: {id: "arr[0]",
+                status: "true"},
                 async: true
         });
 

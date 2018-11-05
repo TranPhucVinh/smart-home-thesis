@@ -141,8 +141,6 @@ function room(req, res){
 	});
 }
 
-var deviceStatus = [];
-
 router.get("/app.device", urlencodedParser, device);
 function device(req, res){
   var deviceJSON = {"id": "", "status": ""};
@@ -150,6 +148,7 @@ function device(req, res){
   deviceJSON.status = req.body.status;
   deviceStatus.push(deviceJSON);
   res.send(deviceStatus);
+  deviceStatus = [];
 }
 
 module.exports = router; 
