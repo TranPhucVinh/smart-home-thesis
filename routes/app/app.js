@@ -147,8 +147,7 @@ function device(req, res){
   deviceJSON.id = req.body.id;
   deviceJSON.status = req.body.status;
   deviceStatus.push(deviceJSON);
-  res.send(returnArray);
-  deviceStatus = [];
+  res.send(deviceStatus);
 }
 
 module.exports = router; 
