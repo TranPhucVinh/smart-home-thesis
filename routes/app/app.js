@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 var querystring = require('querystring');
 var url = require("url");
+const bodyparser = require("body-parser");
+const urlencodedParser = bodyparser.urlencoded({ extended: false });
 const pool = require('./../../database/database');
 
 router.post("/app.validate", validation);
