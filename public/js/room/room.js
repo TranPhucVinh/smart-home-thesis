@@ -23,8 +23,7 @@ $(document).ready(function(){
                 type:"GET",
                 async: true,
                 data: {id: "data",
-                status: "false"},
-                async: true
+                status: "false"}
         });
 
             ws.send(arr[0]+"&received");
@@ -36,8 +35,7 @@ $(document).ready(function(){
                 type:"GET",
                 async: true,
                 data: {id: "arr[0]",
-                status: "true"},
-                async: true
+                status: "true"}
         });
 
             ws.send(arr[0]+"&received");
