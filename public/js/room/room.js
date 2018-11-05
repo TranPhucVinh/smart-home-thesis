@@ -32,12 +32,13 @@ $(document).ready(function(){
         }
         else if (arr[1] == "LED_ON") {
         	$('#'+arr[0]).attr('checked', true);
-
+            let stringID = "arr[0]";
+            let booleanValue = "true";
             $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
-                data: {id: "arr[0]",
-                status: "true"},
+                data: {id: stringID,
+                status: booleanValue},
                 success: function(result){
                 }
         });
