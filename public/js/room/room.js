@@ -32,25 +32,9 @@ $(document).ready(function(){
 
 		if ($('#'+ledID).is(':checked')) {
 	// use $('#'+ledID).is(':checked') in Jquery, not like id.checked in JS	
-        let returnString = "data";
-    $.ajax({url: "app/app.device",
-                type:"GET",
-                async: true,
-                data: {name: returnString}
-        });
-
 			led_status = "LED_ON";
-		} else {
-            let returnString = "data";
-            $.ajax({url: "app/app.device",
-                type:"GET",
-                async: true,
-                data: {name: returnString}
-            });
-        }
-
+		}
 		ws.send(ledID+"&"+led_status);
-
 	});
         if ($('#'+ledID).is(':checked')) {
             $.ajax({url: "app/app.device",
@@ -63,7 +47,7 @@ $(document).ready(function(){
             $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
-                data: {name: returnString}
+                data: {name: "returnString"}
             });
         }
 
