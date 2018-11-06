@@ -36,11 +36,15 @@ $(document).ready(function(){
 		}
 		ws.send(ledID+"&"+led_status);
 	});
+
+    var x = {"amount" : "self.amount()"};
+    var string = JSON.stringify(x);
+
         if ($('#'+ledID).is(':checked')) {
             $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
-                data: {name: returnString}
+                data: string
              });
         } else {
             let returnString = "data";
