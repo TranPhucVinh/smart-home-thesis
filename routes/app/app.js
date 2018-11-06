@@ -148,7 +148,7 @@ function device(req, res){
   var deviceJSON = {"id": "555", "status": "555"};
   deviceJSON.id = "19";
   // deviceJSON.status = req.body.status;
-  res.send("body parser: "+req.body);
+  res.send("body parser: "+req.body.name);
 }
 
 module.exports = router; 
