@@ -51,7 +51,7 @@ $(document).ready(function(){
             $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
-                data: {name: "returnString"}
+                data: string
             });
         }
 
