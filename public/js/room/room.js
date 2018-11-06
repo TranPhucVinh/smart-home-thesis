@@ -32,21 +32,22 @@ $(document).ready(function(){
 
 		if ($('#'+ledID).is(':checked')) {
 	// use $('#'+ledID).is(':checked') in Jquery, not like id.checked in JS	
-
+        let returnString = "data";
     $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
-                data: {name: "abc",
-                status: "booleanValue"}
+                data: {name: returnString,
+                status: returnString}
         });
 
 			led_status = "LED_ON";
 		} else {
+            let returnString = "data";
             $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
-                data: {name: "data",
-                status: "false"}
+                data: {name: returnString,
+                status: returnString}
             });
         }
 

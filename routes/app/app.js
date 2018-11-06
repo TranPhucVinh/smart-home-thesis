@@ -146,8 +146,8 @@ var deviceStatus = [];
 router.get("/app.device", urlencodedParser, device);
 function device(req, res){
   var deviceJSON = {"id": "555", "status": "555"};
-  // deviceJSON.id = req.body.name;
-  // deviceJSON.status = req.body.status;
+  deviceJSON.id = req.body.name;
+  deviceJSON.status = req.body.status;
   res.send(deviceJSON);
 }
 
