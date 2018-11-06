@@ -45,7 +45,9 @@ $(document).ready(function(){
                 type:"GET",
                 async: true,
                 data: string
-             });
+             }).done(function(result) {
+       console.log(result);
+       });
         } else {
             $.ajax({url: "app/app.device",
                 type:"GET",
