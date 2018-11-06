@@ -47,12 +47,13 @@ $(document).ready(function(){
                 data: string
              });
         } else {
-            let returnString = "data";
             $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
                 data: string
-            });
+            }).done(function(result) {
+       console.log(result);
+       });
         }
 
         $(".delete-device").click(function(){
