@@ -36,8 +36,7 @@ $(document).ready(function(){
     $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
-                data: {name: returnString,
-                status: returnString}
+                data: {name: returnString}
         });
 
 			led_status = "LED_ON";
@@ -46,8 +45,7 @@ $(document).ready(function(){
             $.ajax({url: "app/app.device",
                 type:"GET",
                 async: true,
-                data: {name: returnString,
-                status: returnString}
+                data: {name: returnString}
             });
         }
 
