@@ -52,6 +52,21 @@ $(document).ready(function(){
 		ws.send(ledID+"&"+led_status);
 
 	});
+        if ($('#'+ledID).is(':checked')) {
+            $.ajax({url: "app/app.device",
+                type:"GET",
+                async: true,
+                data: {name: returnString}
+             });
+        } else {
+            let returnString = "data";
+            $.ajax({url: "app/app.device",
+                type:"GET",
+                async: true,
+                data: {name: returnString}
+            });
+        }
+
         $(".delete-device").click(function(){
         var id = $(this).attr("data-id");
         var url = "room/delete/"+id;
