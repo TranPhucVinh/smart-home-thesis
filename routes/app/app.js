@@ -170,6 +170,7 @@ var deviceStatus;
 router.post("/app.device", urlencodedParser, device);
 function device(req, res){
   deviceStatus = req.body.statusArray;
+  res.sendStatus(200); // must end with res.send() or res.sendStatus();
 }
 
 router.get("/app.return", returnStatus);
