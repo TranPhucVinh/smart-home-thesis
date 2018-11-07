@@ -158,9 +158,10 @@ function roomOnload(req, res){
           var deviceJSON = {"name": "", "id": ""}; 
           deviceJSON.name = result.rows[i].name;
           deviceJSON.id = result.rows[i].id;
-          jsonArray.room.push(deviceJSON);
+           returnArray.push(deviceJSON);
         }
-        returnArray.push(jsonArray);
+      }
+    });         
         res.send(returnArray); 
 }
   
