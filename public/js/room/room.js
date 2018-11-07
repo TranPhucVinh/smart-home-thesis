@@ -8,7 +8,7 @@ $(document).ready(function(){
      $.ajax({url: "app/room.onload", type:"POST",
     async: true, 
     success: function(result){
-            console.log("Return array "+result);
+            console.log(result);
           }
     });
 
