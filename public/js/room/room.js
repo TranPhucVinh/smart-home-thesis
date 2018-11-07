@@ -59,10 +59,8 @@ $(document).ready(function(){
          deviceStatus.id = idArray[i];
          if ($('#'+idArray[i]).is(':checked')) {
             deviceStatus.status = "ON";
-            console.log("have value");
          } else {
             deviceStatus.status = "OFF";
-            console.log("have value");
          }
          statusArray.push(deviceStatus);
     }
@@ -72,7 +70,7 @@ $(document).ready(function(){
     async: true, 
     data: {statusArray: statusArray},
     success: function(result){
-        console.log(statusArray);
+        console.log(result);
     }
     });
 
