@@ -169,7 +169,7 @@ var deviceStatus;
 
 router.post("/app.device", urlencodedParser, device);
 function device(req, res){
-  deviceStatus = req.body.statusArray;
+  deviceStatus = req.body.sendArray;
   res.send(deviceStatus); // must end with res.send() or res.sendStatus();
 }
 

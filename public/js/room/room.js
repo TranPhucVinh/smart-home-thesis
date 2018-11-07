@@ -66,13 +66,13 @@ $(document).ready(function(){
     }
     }, 1000);
 
-setTimeout(function() {
-    $.ajax({url: "app/app.device", type:"POST",
-    async: true, 
-    data: {statusArray: statusArray},
-    success: function(result){
-        console.log(result);
-    }
+    setTimeout(function() {
+        $.ajax({url: "app/app.device", type:"POST",
+            async: true, 
+            data: {statusArray: statusArray},
+            success: function(result){
+            console.log(result);
+        }
     });
 }, 1500);
 
