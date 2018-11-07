@@ -53,6 +53,7 @@ $(document).ready(function(){
 		ws.send(ledID+"&"+led_status);
 	});
 
+    console.log("length "+idArray.length);
     for (i=0; i<idArray.length; i++){
          // var deviceStatus = {"id": "", "status":""};
          // deviceStatus.id = idArray[i];
