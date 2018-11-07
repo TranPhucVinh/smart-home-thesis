@@ -69,7 +69,7 @@ $(document).ready(function(){
     setTimeout(function() {
         $.ajax({url: "app/app.device", type:"POST",
             async: true, 
-            data: {statusArray: statusArray},
+            data: {sendArray: statusArray},
             success: function(result){
             console.log(result);
         }
