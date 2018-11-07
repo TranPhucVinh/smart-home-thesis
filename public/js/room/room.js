@@ -53,18 +53,18 @@ $(document).ready(function(){
 		ws.send(ledID+"&"+led_status);
 	});
 
-    for (i=0; i<idArray.length;i++){
-         var deviceStatus = {"id": "", "status":""};
-         deviceStatus.id = idArray[i];
+    for (i=0; i<idArray.length; i++){
+         // var deviceStatus = {"id": "", "status":""};
+         // deviceStatus.id = idArray[i];
          console.log("not in loop: have value");
-         if ($('#'+idArray[i]).is(':checked')) {
-            deviceStatus.status = "ON";
-            console.log("have value");
-         } else {
-            deviceStatus.status = "OFF";
-            console.log("have value");
-         }
-         statusArray.push(deviceStatus);
+         // if ($('#'+idArray[i]).is(':checked')) {
+         //    deviceStatus.status = "ON";
+         //    console.log("have value");
+         // } else {
+         //    deviceStatus.status = "OFF";
+         //    console.log("have value");
+         // }
+         // statusArray.push(deviceStatus);
     }
 
     $.ajax({url: "app/app.device", type:"POST",
