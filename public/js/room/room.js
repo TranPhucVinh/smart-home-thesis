@@ -72,6 +72,7 @@ setTimeout(function() {
             data: {sendArray: statusArray},
             success: function(result){
             console.log(statusArray);
+            console.log("result "+result);
         }
     });
 }, 1500);
