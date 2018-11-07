@@ -1,6 +1,7 @@
 var ledID;
 var ws;
-
+var i;
+var deviceArray = [], idArray = [];
 $(document).ready(function(){
 	var url = window.location.host;
     ws = new WebSocket('wss://' + url + '/ws');
@@ -8,7 +9,11 @@ $(document).ready(function(){
      $.ajax({url: "app/room.onload", type:"POST",
     async: true, 
     success: function(result){
-            console.log(result);
+            for(i=0;i<result.length;i++){
+                deviceArray.push(result[i].name);
+                idArray.push("id_"+result[i].id);
+            }
+            console.log(deviceArray);
           }
     });
 
