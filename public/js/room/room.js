@@ -66,6 +66,7 @@ $(document).ready(function(){
     }
     }, 1000);
 
+setTimeout(function() {
     $.ajax({url: "app/app.device", type:"POST",
     async: true, 
     data: {statusArray: statusArray},
@@ -73,6 +74,7 @@ $(document).ready(function(){
         console.log(result);
     }
     });
+}, 1500);
 
         $(".delete-device").click(function(){
         var id = $(this).attr("data-id");
