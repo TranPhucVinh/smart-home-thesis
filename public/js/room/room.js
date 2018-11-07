@@ -55,12 +55,13 @@ $(document).ready(function(){
 
     for (i=0; i<idArray.length;i++){
          var deviceStatus = {"id": "", "status":""};
+         deviceStatus.id = idArray[i];
          if ($('#'+idArray[i]).is(':checked')) {
-            deviceStatus.id = idArray[i];
             deviceStatus.status = "ON";
+            console.log("have value");
          } else {
-            deviceStatus.id = idArray[i];
             deviceStatus.status = "OFF";
+            console.log("have value");
          }
          statusArray.push(deviceStatus);
     }
