@@ -68,13 +68,13 @@ $(document).ready(function(){
 
     setTimeout(function() {
         $.ajax({url: "app/app.device", type:"POST",
-            async: true, 
+            async: false, 
             data: {sendArray: statusArray},
             success: function(result){
             console.log(result);
         }
     });
-}, 2000);
+}, 1500);
 
         $(".delete-device").click(function(){
         var id = $(this).attr("data-id");
