@@ -56,6 +56,7 @@ $(document).ready(function(){
     for (i=0; i<idArray.length;i++){
          var deviceStatus = {"id": "", "status":""};
          deviceStatus.id = idArray[i];
+         console.log("not in loop: have value");
          if ($('#'+idArray[i]).is(':checked')) {
             deviceStatus.status = "ON";
             console.log("have value");
