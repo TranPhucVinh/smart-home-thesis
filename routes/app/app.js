@@ -174,6 +174,7 @@ function device(req, res){
 
 router.get("/app.return", returnStatus);
 function returnStatus(req, res){
-  res.send(deviceStatus);
+  res.send("status Array "+deviceStatus);
 }
+
 module.exports = router; 
