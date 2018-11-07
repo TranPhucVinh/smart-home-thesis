@@ -160,9 +160,9 @@ function roomOnload(req, res){
           deviceJSON.id = result.rows[i].id;
            returnArray.push(deviceJSON);
         }
+        res.send(returnArray);
       }
     });         
-        res.send(returnArray); 
 }
   
 var deviceStatus = [];
