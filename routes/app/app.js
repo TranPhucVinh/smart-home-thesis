@@ -140,6 +140,29 @@ function room(req, res){
   		else res.send("unknown");
 	});
 }
+
+//only handle when you access the same house-floor-room in website and app
+router.post("/room.onload", roomOnload);
+function roomOnload(req, res){
+  var userid = req.session.userid;
+  var floorName = req.session.floor;
+  var houseName = req.session.house;
+  var roomName = req.session.room;
+
+  var returnArray = [], i;
+
+  pool.query('select * from devices where housename=$1 and floorname=$2 and roomname=$3 and userid=$4',
+    [houseName, floorName, roomName, userid], (err, result) => {
+    if (result.rows.length != 0) {
+          for (i=0; i<result.rows.length; i++){
+          var deviceJSON = {"name": "", "id": ""}; 
+          deviceJSON.name = result.rows[i].name;
+          deviceJSON.id = result.rows[i].id;
+          jsonArray.room.push(deviceJSON);
+        }
+        returnArray.push(jsonArray);
+        res.send(returnArray); 
+}
   
 var deviceStatus = [];
 

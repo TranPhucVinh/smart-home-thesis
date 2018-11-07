@@ -4,6 +4,14 @@ var ws;
 $(document).ready(function(){
 	var url = window.location.host;
     ws = new WebSocket('wss://' + url + '/ws');
+
+     $.ajax({url: "app/room.onload", type:"POST",
+    async: true, 
+    success: function(result){
+            console.log("Return array "+result);
+          }
+    });
+
 	ws.onopen = function() {
         ws.send("Websocket is open");
     }
@@ -25,6 +33,7 @@ $(document).ready(function(){
             ws.send(arr[0]+"&received");
         }
     }
+
      $("input").click(function(){
         ledID = $(this).attr("id"); // get id of an on-click variable id
 
