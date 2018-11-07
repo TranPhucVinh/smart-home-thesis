@@ -71,7 +71,7 @@ setTimeout(function() {
             async: true,
             data: {sendArray: "statusArray"},
             success: function(result){
-            // console.log(statusArray);
+            console.log(statusArray);
             console.log("result "+result);
         }
     });
