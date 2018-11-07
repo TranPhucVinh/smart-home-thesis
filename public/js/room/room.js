@@ -70,7 +70,7 @@ $(document).ready(function(){
             async: true,
             data: {sendArray: statusArray},
             success: function(result){
-            console.log(result);
+            console.log(sendArray);
         }
     });
 
