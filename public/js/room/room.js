@@ -2,6 +2,8 @@ var ledID;
 var ws;
 var i;
 var deviceArray = [], idArray = [];
+var statusArray = [];
+
 $(document).ready(function(){
 	var url = window.location.host;
     ws = new WebSocket('wss://' + url + '/ws');
@@ -13,7 +15,7 @@ $(document).ready(function(){
                 deviceArray.push(result[i].name);
                 idArray.push("id_"+result[i].id);
             }
-            console.log(deviceArray);
+            console.log(idArray);
           }
     });
 
@@ -51,26 +53,28 @@ $(document).ready(function(){
 		ws.send(ledID+"&"+led_status);
 	});
 
-    var x = {"amount" : "self.amount()"};
-    var string = JSON.stringify(x);
+    for (i=0; i<idArray.length;i++){
+         var deviceStatus = {"id": "", "status":""};
+         if ($('#'+idArray[i]).is(':checked')) {
+            deviceStatus.id = idArray[i];
+            deviceStatus.status = "ON";
+         } else {
+            deviceStatus.id = idArray[i];
+            deviceStatus.status = "OFF";
+         }
+         statusArray.push(deviceStatus);
+    }
 
-        if ($('#'+ledID).is(':checked')) {
-            $.ajax({url: "app/app.device",
-                type:"GET",
-                async: true,
-                data: string
-             }).done(function(result) {
-       console.log(result);
-       });
-        } else {
-            $.ajax({url: "app/app.device",
-                type:"GET",
-                async: true,
-                data: string
-            }).done(function(result) {
-       console.log(result);
-       });
-        }
+    $.ajax({url: "app/app.device", type:"POST",
+    async: true, 
+    success: function(result){
+            for(i=0;i<result.length;i++){
+                deviceArray.push(result[i].name);
+                idArray.push("id_"+result[i].id);
+            }
+            console.log(idArray);
+          }
+    });
 
         $(".delete-device").click(function(){
         var id = $(this).attr("data-id");

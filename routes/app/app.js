@@ -165,14 +165,15 @@ function roomOnload(req, res){
     });         
 }
   
-var deviceStatus = [];
+var deviceStatus;
 
-router.get("/app.device", urlencodedParser, device);
+router.post("/app.device", urlencodedParser, device);
 function device(req, res){
-  var deviceJSON = {"id": "555", "status": "555"};
-  deviceJSON.id = "19";
-  // deviceJSON.status = req.body.status;
-  res.send("body parser: "+req.body.amount);
+  deviceStatus = req.body.statusArray;
 }
 
+router.get("/app.return", returnStatus);
+function returnStatus(req, res){
+  res.send(deviceStatus);
+}
 module.exports = router; 
