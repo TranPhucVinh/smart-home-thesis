@@ -74,7 +74,7 @@ $(document).ready(function(){
             console.log(result);
         }
     });
-}, 1500);
+}, 2000);
 
         $(".delete-device").click(function(){
         var id = $(this).attr("data-id");
