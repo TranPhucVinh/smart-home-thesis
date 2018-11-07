@@ -65,13 +65,15 @@ $(document).ready(function(){
          statusArray.push(deviceStatus);
     }
     }, 1000);
+    
+console.log(statusArray);
 
 setTimeout(function() {
         $.ajax({url: "app/app.device", type:"POST",
             async: true,
             data: {sendArray: statusArray},
             success: function(result){
-            console.log(statusArray);
+            // console.log(statusArray);
             console.log("result "+result);
         }
     });
