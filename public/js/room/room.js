@@ -70,6 +70,7 @@ setTimeout(function() {
     console.log(statusArray);
         $.ajax({url: "app/app.device", type:"POST",
             async: true,
+             contentType: "application/json",
             data: {sendArray: statusArray},
             success: function(result){
             console.log(statusArray);

@@ -5,6 +5,7 @@ var url = require("url");
 const bodyparser = require("body-parser");
 const urlencodedParser = bodyparser.urlencoded({ extended: false });
 const pool = require('./../../database/database');
+const jsonParser = bodyparser.json();
 
 router.post("/app.validate", validation);
 function validation(req, res) {
@@ -167,15 +168,15 @@ function roomOnload(req, res){
   
 var deviceStatus;
 
-router.post("/app.device", urlencodedParser, device);
+router.post("/app.device", jsonParser, device);
 function device(req, res){
   deviceStatus = req.body.sendArray;
-  res.send(req.body.sendArray); // must end with res.send() or res.sendStatus();
+  res.send(deviceStatus); // must end with res.send() or res.sendStatus();
 }
 
 router.get("/app.return", returnStatus);
 function returnStatus(req, res){
-  res.send("status Array "+deviceStatus);
+  res.send(deviceStatus);
 }
 
 module.exports = router; 
