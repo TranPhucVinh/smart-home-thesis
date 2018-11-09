@@ -72,8 +72,7 @@ setTimeout(function() {
             contentType: "application/json",
             data: JSON.stringify({sendArray: statusArray}),
             success: function(result){
-            console.log(statusArray);
-            console.log("result "+result);
+            console.log(result);
         }
     });
 }, 1500);
