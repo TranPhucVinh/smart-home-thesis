@@ -9,8 +9,14 @@ body {
   background-color: white;
 }
 
+.easypiechar .percent {
+  position: absolute;
+  top: 0;
+  top: 0;
+}
+
 div.boxDistance {
-            margin-top: 1.5cm;
+    margin-top: 1.5cm;
 }
 
 #bulb{
