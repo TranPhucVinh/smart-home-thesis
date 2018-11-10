@@ -11,11 +11,11 @@ body {
   text-align: center;
 }
 
-.square canvas {
+/*.square canvas {
   position: absolute;
   top: 0;
   left: 0;
-}
+}*/
 
 div.boxDistance {
     margin-top: 1.5cm;
