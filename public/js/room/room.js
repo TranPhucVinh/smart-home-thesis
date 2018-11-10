@@ -59,7 +59,7 @@ $(document).ready(function(){
 		ws.send(ledID+"&"+led_status);
 	});
 
-    setTimeout(function() {
+    setInterval(function() {
         for (i=0; i<idArray.length; i++){
          var deviceStatus = {"id": "", "status":""};
          deviceStatus.id = idArray[i];
@@ -75,7 +75,7 @@ $(document).ready(function(){
     }
     }, 1000);
 
-setTimeout(function() {
+setInterval(function() {
         $.ajax({url: "app/app.device", type:"POST",
             async: true,
             contentType: "application/json",
