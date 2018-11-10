@@ -66,7 +66,7 @@ $(document).ready(function(){
             deviceStatus.status = "ON";
          } else if ($('#'+idArray[i]).not(':checked')) {
             deviceStatus.status = "OFF";
-         } else {
+         } else if (arr[2] != null) {
             deviceStatus.status = arr[2];
             console.log(arr[2]);
         }
