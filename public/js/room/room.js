@@ -40,6 +40,7 @@ $(document).ready(function(){
             ws.send(arr[0]+"&received");
         }
         if (arr[2] != null){
+            console.log("temo value"+arr[2]);
             $('#temp_'+arr[1]).text(arr[2]);
         }
     }
