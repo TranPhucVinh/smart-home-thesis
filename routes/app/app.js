@@ -175,7 +175,7 @@ function device(req, res){
   res.send(deviceStatus); // must end with res.send() or res.sendStatus();
 }
 
-router.get("/app.return", returnStatus);
+router.post("/app.return", returnStatus);
 function returnStatus(req, res){
   res.send(deviceStatus);
 }
