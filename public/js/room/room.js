@@ -3,6 +3,7 @@ var ws;
 var i;
 var deviceArray = [], idArray = [];
 var statusArray = [];
+var arr;
 
 $(document).ready(function(){
 	var url = window.location.host;
@@ -27,7 +28,7 @@ $(document).ready(function(){
         // console.log(evt);
         // console.log("Data type: " + typeof(evt));
 
-        var arr = evt.data.split('&');
+        arr = evt.data.split('&');
         // console.log("Array " + arr[0]);        
 
         if (arr[1] == "LED_OFF") {
@@ -40,8 +41,8 @@ $(document).ready(function(){
             ws.send(arr[0]+"&received");
         }
         if (arr[2] != null){
-            console.log("temp value"+arr[2]);
-            $('#temp_'+arr[0]).text(arr[2]);
+            // console.log("temp value"+arr[2]);
+            $('#temp_'+arr[0]).text(arr[2]+"&#8451;");
         }
     }
 
@@ -63,9 +64,9 @@ $(document).ready(function(){
          deviceStatus.id = idArray[i];
          if ($('#'+idArray[i]).is(':checked')) {
             deviceStatus.status = "ON";
-         } else {
+         } else ($('#'+idArray[i]).not(':checked')) {
             deviceStatus.status = "OFF";
-         }
+         } else deviceStatus.status = arr[2];
          statusArray.push(deviceStatus);
     }
     }, 1000);
