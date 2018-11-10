@@ -39,6 +39,9 @@ $(document).ready(function(){
         	$('#'+arr[0]).attr('checked', true);            
             ws.send(arr[0]+"&received");
         }
+        if (arr[2] != null){
+            $('#temp_'+arr[1]).text(arr[2]);
+        }
     }
 
      $("input").click(function(){
