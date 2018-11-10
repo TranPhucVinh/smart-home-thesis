@@ -7,6 +7,8 @@ body {
   height: 200px;
   width: 200px;
   background-color: white;
+  font-size: 30px;
+  text-align: center;
 }
 
 .square canvas {
