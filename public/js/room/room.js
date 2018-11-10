@@ -59,7 +59,7 @@ $(document).ready(function(){
 		ws.send(ledID+"&"+led_status);
 	});
 
-    setInterval(function() {
+    setTimeout(function() {
         for (i=0; i<idArray.length; i++){
          var deviceStatus = {"id": "", "status":""};
          deviceStatus.id = idArray[i];
@@ -68,6 +68,7 @@ $(document).ready(function(){
          } else if ($('#'+idArray[i]).not(':checked') && typeArray[i] == "digital") {
             deviceStatus.status = "OFF";
          } else if (typeArray[i] == "analog") {
+            while (arr[2] == null){;}
             deviceStatus.status = arr[2];
             console.log(arr[2]);
         }
@@ -75,7 +76,7 @@ $(document).ready(function(){
     }
     }, 1000);
 
-setInterval(function() {
+setTimeout(function() {
         $.ajax({url: "app/app.device", type:"POST",
             async: true,
             contentType: "application/json",
