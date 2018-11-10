@@ -42,7 +42,7 @@ $(document).ready(function(){
         }
         if (arr[2] != null){
             // console.log("temp value"+arr[2]);
-            $('#temp_'+arr[0]).text(arr[2]+"&#8451;");
+            $('#temp_'+arr[0]).text(arr[2]+"°C");
         }
     }
 
@@ -66,7 +66,10 @@ $(document).ready(function(){
             deviceStatus.status = "ON";
          } else if ($('#'+idArray[i]).not(':checked')) {
             deviceStatus.status = "OFF";
-         } else deviceStatus.status = arr[2];
+         } else {
+            deviceStatus.status = arr[2];
+            console.log(arr[2]);
+        }
          statusArray.push(deviceStatus);
     }
     }, 1000);
