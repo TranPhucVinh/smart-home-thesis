@@ -9,10 +9,10 @@ body {
   background-color: white;
 }
 
-.easypiechar .percent {
+.square canvas {
   position: absolute;
   top: 0;
-  top: 0;
+  left: 0;
 }
 
 div.boxDistance {
