@@ -156,9 +156,10 @@ function roomOnload(req, res){
     [houseName, floorName, roomName, userid], (err, result) => {
     if (result.rows.length != 0) {
           for (i=0; i<result.rows.length; i++){
-          var deviceJSON = {"name": "", "id": ""};
+          var deviceJSON = {"name": "", "id": "", "type":""};
           deviceJSON.name = result.rows[i].name;
           deviceJSON.id = result.rows[i].id;
+          deviceJSON.type = result.rows[i].type;
            returnArray.push(deviceJSON);
         }
         res.send(returnArray);

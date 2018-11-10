@@ -1,7 +1,7 @@
 var ledID;
 var ws;
 var i;
-var deviceArray = [], idArray = [];
+var deviceArray = [], idArray = [], typeArray = [];
 var statusArray = [];
 var arr;
 
@@ -15,6 +15,7 @@ $(document).ready(function(){
             for(i=0;i<result.length;i++){
                 deviceArray.push(result[i].name);
                 idArray.push("id_"+result[i].id);
+                typeArray.push(result[i].type);
             }
             console.log(idArray);
           }
@@ -62,11 +63,11 @@ $(document).ready(function(){
         for (i=0; i<idArray.length; i++){
          var deviceStatus = {"id": "", "status":""};
          deviceStatus.id = idArray[i];
-         if ($('#'+idArray[i]).is(':checked')) {
+         if ($('#'+idArray[i]).is(':checked') && typeArray[i] == "digital") {
             deviceStatus.status = "ON";
-         } else if ($('#'+idArray[i]).not(':checked')) {
+         } else if ($('#'+idArray[i]).not(':checked') && typeArray[i] == "digital") {
             deviceStatus.status = "OFF";
-         } else if (arr[2] != null) {
+         } else if (typeArray[i] == "analog") {
             deviceStatus.status = arr[2];
             console.log(arr[2]);
         }
