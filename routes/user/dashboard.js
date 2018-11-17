@@ -61,7 +61,6 @@ function deleteHouse(req,res){
 router.post("/house",urlencodedParser, houseGet);
 function houseGet(req, res){
 	req.session.house = req.body.houseArr;
-	req.session.houseid = req.body.houseID;
 	res.redirect("/house");
 }
 
