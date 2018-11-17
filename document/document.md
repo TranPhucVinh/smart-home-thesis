@@ -40,3 +40,9 @@ Android app control device directly by sending control message directly to devic
 server
 
 Disadvantages: Mobile app can't handle when website is turn off (turn off websocket). It is required to have database to solve this problem.
+
+### External port
+
+In a heroku application, port 80 is designated port for external access.
+
+Reference: [Heroku port number for a given application](https://stackoverflow.com/questions/46356690/heroku-port-number-for-a-given-application)
