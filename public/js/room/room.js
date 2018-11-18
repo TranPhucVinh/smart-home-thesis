@@ -44,6 +44,16 @@ $(document).ready(function(){
         if (arr[2] != null){
             // console.log("temp value"+arr[2]);
             $('#temp_'+arr[0]).text(arr[2]+"°C");
+            if (arr[2] >32) {
+                $.ajax({url: "app/app.email", type:"POST",
+            async: true,
+            contentType: "application/json",
+            data: JSON.stringify({mailData: arr[2]}),
+            success: function(result){
+            // console.log(result);
+        }
+    });
+            }
         }
     }
 

@@ -2,10 +2,19 @@ const express = require('express');
 const router = express.Router();
 var querystring = require('querystring');
 var url = require("url");
+const nodemailer = require('nodemailer');
 const bodyparser = require("body-parser");
 const urlencodedParser = bodyparser.urlencoded({ extended: false });
 const pool = require('./../../database/database');
 const jsonParser = bodyparser.json();
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'jaynekaylaellis@gmail.com',
+    pass: 'user_admin_user_admin_@'
+  }
+});
 
 router.post("/app.validate", validation);
 function validation(req, res) {
@@ -178,6 +187,26 @@ function device(req, res){
 router.post("/app.return", returnStatus);
 function returnStatus(req, res){
   res.send(deviceStatus);
+}
+
+router.post("/app.email", jsonParser, emailSent);
+function emailSent(req, res) {
+  var receiveData = req.body.mailData;
+
+  var mailOptions = {
+  from: 'jaynekaylaellis@gmail.com',
+  to: 'tranphucvinh471776@gmail.com',
+  subject: 'Temperature alert',
+  text: 'Alert !!! Temperature is higher than 32°C'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
 }
 
 module.exports = router; 
