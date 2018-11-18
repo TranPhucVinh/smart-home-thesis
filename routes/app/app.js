@@ -12,7 +12,7 @@ var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'jaynekaylaellis@gmail.com',
-    pass: 'user_admin_user_admin_@'
+    pass: 'user_admin_user_@'
   }
 });
 
@@ -197,7 +197,7 @@ function emailSent(req, res) {
   from: 'jaynekaylaellis@gmail.com',
   to: 'tranphucvinh471776@gmail.com',
   subject: 'Temperature alert',
-  text: 'Alert !!! Temperature is higher than 32°C'
+  text: 'Alert !!! Temperature is higher than 32°C, temperature now'+receiveData
 };
 
 transporter.sendMail(mailOptions, function(error, info){
