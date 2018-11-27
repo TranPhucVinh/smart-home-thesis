@@ -81,6 +81,7 @@
   					<option value="analog">Analog</option>
   					<option value="digital">Digital</option>
  				 	  <option value="ad">Analog+Digital</option>
+            <option value="motion">Motion detect</option>
 				</select>
     		</div>
   		</div>
@@ -120,6 +121,12 @@
     </div>
     
   	</li>
+    <% } else if (deviceType[i] == "motion") { %>
+      <li>
+      <div class = "square">
+                <p id="bulb">ON</p>
+      </div>
+     </li>   
   	<% } else { %>
 
   	<li>
