@@ -7,16 +7,18 @@ window.onload = function() {
     ledID = document.getElementById('led-switch');
 
     ws.onopen = function() {
-        ws.send("Message to send");
+        ws.send("Websocket is open");
     };
 
     ws.onmessage = function (evt) {
         var arr = evt.data.split('&');
         if (arr[1] == "LED_OFF") {
             ledID.checked = false;
+            ws.send(arr[0]+"&received");
         }
         else if (arr[1] == "LED_ON") {
            ledID.checked = true;
+            ws.send(arr[0]+"&received");
         }
     };
 }

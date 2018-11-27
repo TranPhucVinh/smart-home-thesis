@@ -481,7 +481,7 @@ var WS = {
         this.ws = new WebSocket(uri, ['arduino']);
         this.ws.binaryType = 'arraybuffer';
         this.ws.onopen = function(evt) {
-            // setMsg("done", "WebSocket is open.");
+            setMsg("done", "Websocket is open");
             WS.connected = true;
         };
         this.ws.onerror = function(evt) {
