@@ -12,6 +12,7 @@ window.onload = function() {
 
     ws.onmessage = function (evt) {
         var arr = evt.data.split('&');
+        if (arr[0] == ledID) {
         if (arr[1] == "LED_OFF") {
             ledID.checked = false;
             ws.send(arr[0]+"&received");
@@ -22,6 +23,7 @@ window.onload = function() {
         }
     };
 }
+
 
 function led() {
     var led_status = "LED_OFF";
