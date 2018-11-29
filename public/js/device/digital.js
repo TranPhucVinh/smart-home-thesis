@@ -1,5 +1,5 @@
 var ws;
-// var ledID;
+var arr;
 
 $(document).ready(function(){
     var url = window.location.host;
@@ -11,7 +11,7 @@ $(document).ready(function(){
     };
 
     ws.onmessage = function (evt) {
-        var arr = evt.data.split('&');
+        arr = evt.data.split('&');
         if (arr[1] == "LED_OFF") {
             $('#'+arr[0]).attr('checked', false);
             ws.send(arr[0]+"&received");
