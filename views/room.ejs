@@ -103,6 +103,7 @@
   		</div>  
   	<form method="POST" action="room/device" class="nameArr">
   		<input type="hidden" name="deviceType" value="<%= deviceType[i] %>">
+      <input type="hidden" name="tempID" value="id_<%= idArr[i] %>">
 		<h4><button class="btn btn-default" data-toggle="collapse" href="#id_collapse_<%= idArr[i] %>">Edit properties</button><button type="submit" class="btn btn-default"><%= nameArr[i] %></button></h4>
 	</form>  		
 
