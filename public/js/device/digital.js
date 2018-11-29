@@ -23,7 +23,7 @@ $(document).ready(function(){
     };
 
     $("input").click(function(){
-        ledID = $(this).attr("id"); // get id of an on-click variable id
+        ledID = arr[0]; // get id of an on-click variable id
 
         var led_status = "LED_OFF";
 
@@ -33,5 +33,5 @@ $(document).ready(function(){
         }
         ws.send(ledID+"&"+led_status);
     });
+
 });
-    
