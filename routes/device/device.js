@@ -10,7 +10,8 @@ function deviceGet(req, res) {
 		res.redirect("/login");
 	}
 	else	if (req.session.deviceType == "digital")
-	res.render("digital", {username: req.session.username});
+	res.render("digital", {username: req.session.username
+		deviceID: req.session.deviceID});
 	else if (req.session.deviceType == "analog")
 	res.render("analog", {username: req.session.username});
 	else res.redirect("/room");
