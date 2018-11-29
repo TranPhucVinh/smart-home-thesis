@@ -45,6 +45,7 @@ $(document).ready(function(){
             // console.log("temp value"+arr[2]);
             $('#temp_'+arr[0]).text(arr[2]+"°C");
             temp_value = arr[2];
+            ws.send("temp_received");
             if (arr[2] >32) {
                 $.ajax({url: "app/app.email", type:"POST",
             async: true,
