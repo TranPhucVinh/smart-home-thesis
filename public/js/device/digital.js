@@ -2,13 +2,14 @@ $(document).ready(function(){
     var url = window.location.host;
     var ws = new WebSocket('wss://' + url + '/ws');
     var ledID; 
-    
+    var arr;
+
     ws.onopen = function() {
         ws.send("Digital is open");
     };
 
     ws.onmessage = function (evt) {
-        var arr = evt.data.split('&');
+        arr = evt.data.split('&');
         if (arr[1] == "LED_OFF") {
             $('#'+arr[0]).attr('checked', false);
             ws.send(arr[0]+"&received");
