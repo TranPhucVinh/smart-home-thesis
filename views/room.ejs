@@ -126,6 +126,21 @@
       <div class = "square">
                 <p id="bulb">ON</p>
       </div>
+
+      <form method="POST" action="room/device" class="nameArr">
+      <input type="hidden" name="deviceType" value="<%= deviceType[i] %>">
+    <h4><button class="btn btn-default" data-toggle="collapse" href="#id_collapse_<%= idArr[i] %>">Edit properties</button><button type="submit" class="btn btn-default"><%= nameArr[i] %></button></h4>
+  </form>   
+
+      <div class="collapse" id="id_collapse_<%= idArr[i] %>">
+            <button class="btn btn-default edit-device" data-id="<%= idArr[i] %>" data-name="<%= nameArr[i] %>">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true" data-toggle="modal" data-target="#editModal"></span>
+            </button>
+          <button class="btn btn-danger delete-device" data-id="<%= idArr[i] %>">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          </button>
+    </div>
+
      </li>   
   	<% } else { %>
 
