@@ -1,35 +1,37 @@
 var ws;
-var ledID;
+// var ledID;
 
-window.onload = function() {
+$(document).ready(function(){
     var url = window.location.host;
     ws = new WebSocket('wss://' + url + '/ws');
-    ledID = document.getElementById('led-switch');
+    // ledID = document.getElementById('led-switch');
 
     ws.onopen = function() {
-        ws.send("Websocket is open");
+        ws.send("Digital is open");
     };
 
     ws.onmessage = function (evt) {
         var arr = evt.data.split('&');
-        if (arr[0] == ledID) {
         if (arr[1] == "LED_OFF") {
-            ledID.checked = false;
+            $('#'+arr[0]).attr('checked', false);
             ws.send(arr[0]+"&received");
         }
         else if (arr[1] == "LED_ON") {
-           ledID.checked = true;
+           $('#'+arr[0]).attr('checked', true);            
             ws.send(arr[0]+"&received");
         }
     };
-}
-}
 
-function led() {
-    var led_status = "LED_OFF";
-        if (ledID.checked)
-            {
-                led_status = "LED_ON";
-             }
-    ws.send(ledID+"&"+led_status);   
-}    
+    $("input").click(function(){
+        ledID = $(this).attr("id"); // get id of an on-click variable id
+
+        var led_status = "LED_OFF";
+
+        if ($('#'+ledID).is(':checked')) {
+    // use $('#'+ledID).is(':checked') in Jquery, not like id.checked in JS 
+            led_status = "LED_ON";
+        }
+        ws.send(ledID+"&"+led_status);
+    });
+}
+    
