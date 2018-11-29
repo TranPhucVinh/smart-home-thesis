@@ -32,6 +32,7 @@ $(document).ready(function(){
         arr = evt.data.split('&');
         // console.log("Array " + arr[0]);        
 
+    if(arr[1] != "analog"){
         if (arr[1] == "LED_OFF") {
             $('#'+arr[0]).attr('checked', false);
 
@@ -41,16 +42,16 @@ $(document).ready(function(){
         	$('#'+arr[0]).attr('checked', true);            
             ws.send(arr[0]+"&received");
         }
-        if (arr[2] != null){
+    }   esle if (arr[1] == "analog"){
             // console.log("temp value"+arr[2]);
-            $('#temp_'+arr[0]).text(arr[2]+"°C");
-            temp_value = arr[2];
+            $('#temp_'+arr[0]).text(arr[3]+"°C");
+            temp_value = arr[3];
             ws.send("temp_received");
-            if (arr[2] >32) {
+            if (arr[3] >32) {
                 $.ajax({url: "app/app.email", type:"POST",
             async: true,
             contentType: "application/json",
-            data: JSON.stringify({mailData: arr[2]}),
+            data: JSON.stringify({mailData: arr[3]}),
             success: function(result){
             // console.log(result);
         }

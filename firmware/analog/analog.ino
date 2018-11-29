@@ -69,8 +69,8 @@ void loop() {
   webSocket.loop();
   if ((digitalRead(LED) == 0)&&(received==0)) {
  
-  webSocket.sendTXT("id_5&LED_ON&"+String(tempConst, 1));
+  webSocket.sendTXT("id_5&analog&LED_ON&"+String(tempConst, 1));
   } else if ((digitalRead(LED) == 1)&&(received==0)) {
-  webSocket.sendTXT("id_5&LED_OFF&"+String(tempConst, 1));
+  webSocket.sendTXT("id_5&analog&LED_OFF&"+String(tempConst, 1));
   }
 }
