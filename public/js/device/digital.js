@@ -1,9 +1,6 @@
-var ws;
-var arr;
-
 $(document).ready(function(){
     var url = window.location.host;
-    ws = new WebSocket('wss://' + url + '/ws');
+    var ws = new WebSocket('wss://' + url + '/ws');
     // ledID = document.getElementById('led-switch');
 
     ws.onopen = function() {
@@ -11,7 +8,7 @@ $(document).ready(function(){
     };
 
     ws.onmessage = function (evt) {
-        arr = evt.data.split('&');
+        var arr = evt.data.split('&');
         if (arr[1] == "LED_OFF") {
             $('#'+arr[0]).attr('checked', false);
             ws.send(arr[0]+"&received");
