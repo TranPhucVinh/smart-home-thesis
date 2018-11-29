@@ -3,7 +3,7 @@ var ws;
 var i;
 var deviceArray = [], idArray = [], typeArray = [];
 var statusArray = [];
-var arr;
+var arr, temp_value;
 
 $(document).ready(function(){
 	var url = window.location.host;
@@ -44,6 +44,7 @@ $(document).ready(function(){
         if (arr[2] != null){
             // console.log("temp value"+arr[2]);
             $('#temp_'+arr[0]).text(arr[2]+"°C");
+            temp_value = arr[2];
             if (arr[2] >32) {
                 $.ajax({url: "app/app.email", type:"POST",
             async: true,
@@ -78,9 +79,8 @@ $(document).ready(function(){
          } else if ($('#'+idArray[i]).not(':checked') && typeArray[i] == "digital") {
             deviceStatus.status = "OFF";
          } else if (typeArray[i] == "analog") {
-            while (arr[2] == null){;}
-            deviceStatus.status = arr[2];
-            console.log(arr[2]);
+            deviceStatus.status = temp_value;
+            // console.log(arr[2]);
         }
          statusArray.push(deviceStatus);
     }
