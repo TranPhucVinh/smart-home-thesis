@@ -1,8 +1,8 @@
 $(document).ready(function(){
     var url = window.location.host;
     var ws = new WebSocket('wss://' + url + '/ws');
-    // ledID = document.getElementById('led-switch');
-
+    var ledID; 
+    
     ws.onopen = function() {
         ws.send("Digital is open");
     };
