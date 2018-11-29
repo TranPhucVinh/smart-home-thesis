@@ -23,7 +23,7 @@ window.onload = function() {
         }
     };
 }
-
+}
 
 function led() {
     var led_status = "LED_OFF";
