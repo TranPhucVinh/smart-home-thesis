@@ -29,5 +29,5 @@ function led() {
             {
                 led_status = "LED_ON";
              }
-    ws.send(led_status);   
+    ws.send(ledID+"&"+led_status);   
 }    
