@@ -54,7 +54,7 @@ function addPost(req, res){
 router.post("/device", urlencodedParser, devicePost);
 function devicePost(req, res) {
 	req.session.deviceType = req.body.deviceType;
-	req.session.tempID = req.body.deviceID;
+	req.session.tempID = req.body.tempID;
 	res.redirect("/device");
 }
 
