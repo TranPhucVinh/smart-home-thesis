@@ -42,7 +42,7 @@ $(document).ready(function(){
         	$('#'+arr[0]).attr('checked', true);            
             ws.send(arr[0]+"&received");
         }
-    }   esle if (arr[1] == "analog"){
+    }  else if (arr[1] == "analog"){
             // console.log("temp value"+arr[2]);
             $('#temp_'+arr[0]).text(arr[3]+"°C");
             temp_value = arr[3];
