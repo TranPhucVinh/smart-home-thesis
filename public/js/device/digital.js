@@ -33,5 +33,5 @@ $(document).ready(function(){
         }
         ws.send(ledID+"&"+led_status);
     });
-}
+});
     
