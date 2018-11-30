@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<% var tempID; %>
 <head>
 	<title>Smart farm</title>
 	<link rel="shortcut icon" href="images/shortcut.png">
@@ -8,6 +9,9 @@
 	<link rel="stylesheet" href="css/device/style.css">
 	<link rel="stylesheet" href="css/device/normalize.css">
   <link rel="stylesheet" href="css/header.css">
+  <script src="js/src/popper.min.js"></script>
+  <script src="js/src/jquery-3.3.1.min.js"></script>
+  <script src="js/src/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/device/analog.js"></script>
 </head>
 <body>
@@ -42,8 +46,8 @@
         	<div class="offset-by-two four columns value-prop" align="center">
 						<h6 class="docs-header">LED</h6>
 						<div class="onoffswitch">
-							<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="led-switch" onclick="led()">
-							<label class="onoffswitch-label" for="led-switch">
+							<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="<% var tempID; %>">
+							<label class="onoffswitch-label" for="<% var tempID; %>">
 								<span class="onoffswitch-inner"></span>
 								<span class="onoffswitch-switch"></span>
 							</label>

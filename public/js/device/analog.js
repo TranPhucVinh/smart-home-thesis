@@ -464,7 +464,7 @@
 
 //Applicaiton code
 var temp_chart;
-
+var arr;
 // function setMsg(cls, text) {
 //     sbox = document.getElementById('status_box');
 //     sbox.className = "siimple-alert  siimple-alert--" + cls;
@@ -491,17 +491,19 @@ var WS = {
         this.ws.onmessage = function(evt) {
             console.log(evt.data);
             // var data = JSON.parse(evt.data);
-            //🔓
-            var ledID = document.getElementById('led-switch');
+            //🔓 
+
+            // var ledID = document.getElementById('led-switch');
             var temp = document.getElementById('temp');
-            var arr = evt.data.split('&');
-            if (arr[1] == "LED_OFF") {
-                ledID.checked = false;
-            }
-            else if (arr[1] == "LED_ON") {
-                ledID.checked = true;
-            }
-            temp.value = arr[2];        
+            arr = evt.data.split('&');
+            // if (arr[2] == "LED_OFF") {
+                // ledID.checked = false;
+            // }
+            // else if (arr[2] == "LED_ON") {
+                // ledID.checked = true;
+            // }
+            // temp.value = arr[3];     
+
             // if (data.status != 'ok')
             //     return;
             // switch (data.action) {
@@ -533,7 +535,7 @@ var WS = {
             //                 newRssiCell.appendChild(newRssiCellText);
             //             }
             //         }
-            temp_chart.add(new Date().getTime(), arr[2]);
+            temp_chart.add(new Date().getTime(), temp.value);
         };
     },
     write: function(data) {
@@ -594,35 +596,56 @@ class Chart {
 
 //open websocket
 
-window.onload = function() {
-        var url = window.location.host;
-        WS.open('wss://' + url + '/ws');
+ $(document).ready(function(){
+    var url = window.location.host;
+    WS.open('wss://' + url + '/ws');
 
-    temp_chart = new Chart("temp-chart", 500, 0, 50);
+    var ledID; 
+
+    // if (arr[2] == "LED_OFF") {
+                // ledID.checked = false;
+            // }
+            // else if (arr[2] == "LED_ON") {
+                // ledID.checked = true;
+            // }
+            // temp.value = arr[3];     
+
+        if (arr[2] == "LED_OFF") {
+            $('#'+arr[0]).attr('checked', false);
+            WS.write(arr[0]+"&received");
+        }
+        else if (arr[2] == "LED_ON") {
+           $('#'+arr[0]).attr('checked', true);            
+            ws.write(arr[0]+"&received");
+        }
+
+    $("input").click(function(){
+        ledID = arr[0]; // get id of an on-click variable id
+
+        var led_status = "LED_OFF";
+
+        if ($('#'+ledID).is(':checked')) {
+    // use $('#'+ledID).is(':checked') in Jquery, not like id.checked in JS 
+            led_status = "LED_ON";
+        }
+        ws.send(ledID+"&"+led_status);
+    });
+
+     temp_chart = new Chart("temp-chart", 500, 0, 50);
 
     setInterval(function() {
         temp_chart.addTest();
     }, 500);
-}
+});
 
-function scan(el) {
-    el.innerHTML = "Scanning...";
-    el.disabled = true;
-    el.className = '';
-    WS.request('wifi', 'get', [], el, document.getElementById('scan-table'));
-}
+// function scan(el) {
+//     el.innerHTML = "Scanning...";
+//     el.disabled = true;
+//     el.className = '';
+//     WS.request('wifi', 'get', [], el, document.getElementById('scan-table'));
+// }
 
-function set_ssid(value) {
-    console.log(value);
-    document.getElementById('ssid').value = value;
-}
-
-function led() {
-  var ledID  = document.getElementById('led-switch');
-    var led_status = "LED_OFF";
-    if (ledID.checked)
-        {
-            led_status = "LED_ON";
-         }
-         WS.write(led_status);
-}
+// function set_ssid(value) {
+//     console.log(value);
+//     document.getElementById('ssid').value = value;
+// }
