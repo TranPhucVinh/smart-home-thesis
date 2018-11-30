@@ -125,14 +125,15 @@
     <% } else if (deviceType[i] == "motion") { %>
       <li>
       <div class = "square">
-                <p id="bulb">ON</p>
+                <p id="motion-detect">ON</p>
       </div>
 
       <form method="POST" action="room/device" class="nameArr">
       <input type="hidden" name="deviceType" value="<%= deviceType[i] %>">
     <h4><button class="btn btn-default" data-toggle="collapse" href="#id_collapse_<%= idArr[i] %>">Edit properties</button>
+      <button type="button" disabled class="btn btn-default"><%= nameArr[i] %></button></h4>   
     </form>
-    <button type="button" disabled class="btn btn-default"><%= nameArr[i] %></button></h4>   
+
 
       <div class="collapse" id="id_collapse_<%= idArr[i] %>">
             <button class="btn btn-default edit-device" data-id="<%= idArr[i] %>" data-name="<%= nameArr[i] %>">
