@@ -132,7 +132,7 @@
       <input type="hidden" name="deviceType" value="<%= deviceType[i] %>">
     <h4><button class="btn btn-default" data-toggle="collapse" href="#id_collapse_<%= idArr[i] %>">Edit properties</button>
     </form>
-    <button class="btn btn-default"><%= nameArr[i] %></button></h4>   
+    <button type="button" disabled class="btn btn-default"><%= nameArr[i] %></button></h4>   
 
       <div class="collapse" id="id_collapse_<%= idArr[i] %>">
             <button class="btn btn-default edit-device" data-id="<%= idArr[i] %>" data-name="<%= nameArr[i] %>">
