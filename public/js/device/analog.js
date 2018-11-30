@@ -205,7 +205,7 @@
             this.originalWidth = width;
             this.canvas.setAttribute('width', (Math.floor(width * dpr)).toString());
             this.canvas.style.width = width + 'px';
-            this.canvas.getContext('2d').scale(dpr, dpr)
+            this.canvas.getContext('2d').scale(dpr, dpr);
         }
         if (!this.originalHeight || (Math.floor(this.originalHeight * dpr) !== height)) {
             this.originalHeight = height;
@@ -221,7 +221,7 @@
         var animate = function() {
             this.frame = SmoothieChart.AnimateCompatibility.requestAnimationFrame(function() {
                 this.render();
-                animate()
+                animate();
             }.bind(this))
         }.bind(this);
         animate()
@@ -281,7 +281,7 @@
         if (!this.isAnimatingScale) {
             var maxIdleMillis = Math.min(1000 / 6, this.options.millisPerPixel);
             if (nowMillis - this.lastRenderTimeMillis < maxIdleMillis) {
-                return
+                return;
             }
         }
         this.resize();
@@ -462,13 +462,13 @@
     exports.SmoothieChart = SmoothieChart
 })(typeof exports === 'undefined' ? this : exports);
 
-//Applicaiton code
+
+//Application code
 var temp_chart;
-var arr;
 // function setMsg(cls, text) {
 //     sbox = document.getElementById('status_box');
-//     sbox.className = "siimple-alert  siimple-alert--" + cls;
-//     sbox.innerHTML = text;
+//     // sbox.className = "siimple-alert  siimple-alert--" + cls;
+//     // sbox.innerHTML = text;
 //     console.log(text);
 // }
 
@@ -481,8 +481,9 @@ var WS = {
         this.ws = new WebSocket(uri, ['arduino']);
         this.ws.binaryType = 'arraybuffer';
         this.ws.onopen = function(evt) {
-            setMsg("done", "New websocket is open");
+            // setMsg("done", "New websocket is open");
             WS.connected = true;
+            WS.write("New websocket is open");
         };
         this.ws.onerror = function(evt) {
             // setMsg("error", "WebSocket error!");
@@ -491,18 +492,16 @@ var WS = {
         this.ws.onmessage = function(evt) {
             console.log(evt.data);
             // var data = JSON.parse(evt.data);
-            //🔓 
-
-            // var ledID = document.getElementById('led-switch');
+            //🔓
             var temp = document.getElementById('temp');
-            arr = evt.data.split('&');
-            // if (arr[2] == "LED_OFF") {
-                // ledID.checked = false;
-            // }
-            // else if (arr[2] == "LED_ON") {
-                // ledID.checked = true;
-            // }
-            // temp.value = arr[3];     
+            var arr = evt.data.split('&');
+            if (arr[2] == "LED_OFF") {
+                $('#'+arr[0]).attr('checked', false);
+            }
+            else if (arr[2] == "LED_ON") {
+                $('#'+arr[0]).attr('checked', true);            
+            }
+            temp.value = arr[3];        
 
             // if (data.status != 'ok')
             //     return;
@@ -535,9 +534,21 @@ var WS = {
             //                 newRssiCell.appendChild(newRssiCellText);
             //             }
             //         }
-            temp_chart.add(new Date().getTime(), temp.value);
+            //      case 'upload':
+                    temp_chart.add(new Date().getTime(), arr[3]);
+                    // break;     
+            // }
+                    $("input").click(function(){
+                    var led_status = "LED_OFF";
+                    var ledID = arr[0];
+                    if ($('#'+ledID).is(':checked')) {
+                         led_status = "LED_ON";
+                    }
+                    WS.write(ledID+"&"+led_status);
+             });
         };
     },
+    //websocket send
     write: function(data) {
         if (this.connected)
             this.ws.send(data);
@@ -594,58 +605,25 @@ class Chart {
     }
 }
 
-//open websocket
-
- $(document).ready(function(){
+window.onload = function() {
     var url = window.location.host;
     WS.open('wss://' + url + '/ws');
 
-    var ledID; 
-
-    // if (arr[2] == "LED_OFF") {
-                // ledID.checked = false;
-            // }
-            // else if (arr[2] == "LED_ON") {
-                // ledID.checked = true;
-            // }
-            // temp.value = arr[3];     
-
-        if (arr[2] == "LED_OFF") {
-            $('#'+arr[0]).attr('checked', false);
-            WS.write(arr[0]+"&received");
-        }
-        else if (arr[2] == "LED_ON") {
-           $('#'+arr[0]).attr('checked', true);            
-            ws.write(arr[0]+"&received");
-        }
-
-    $("input").click(function(){
-        ledID = arr[0]; // get id of an on-click variable id
-
-        var led_status = "LED_OFF";
-
-        if ($('#'+ledID).is(':checked')) {
-    // use $('#'+ledID).is(':checked') in Jquery, not like id.checked in JS 
-            led_status = "LED_ON";
-        }
-        ws.send(ledID+"&"+led_status);
-    });
-
-     temp_chart = new Chart("temp-chart", 500, 0, 50);
+    temp_chart = new Chart("temp-chart", 500, 0, 50);
 
     setInterval(function() {
         temp_chart.addTest();
     }, 500);
-});
+}
 
-// function scan(el) {
-//     el.innerHTML = "Scanning...";
-//     el.disabled = true;
-//     el.className = '';
-//     WS.request('wifi', 'get', [], el, document.getElementById('scan-table'));
-// }
+function scan(el) {
+    el.innerHTML = "Scanning...";
+    el.disabled = true;
+    el.className = '';
+    WS.request('wifi', 'get', [], el, document.getElementById('scan-table'));
+}
 
-// function set_ssid(value) {
-//     console.log(value);
-//     document.getElementById('ssid').value = value;
-// }
+function set_ssid(value) {
+    console.log(value);
+    document.getElementById('ssid').value = value;
+}
