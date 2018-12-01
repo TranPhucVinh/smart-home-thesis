@@ -93,7 +93,6 @@ $(document).ready(function(){
             }
              deviceStatus.status = motion;
             }
-        }
          statusArray.push(deviceStatus);
         }
     }, 2500);
