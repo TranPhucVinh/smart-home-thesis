@@ -3,7 +3,7 @@ var ws;
 var i;
 var deviceArray = [], idArray = [], typeArray = [];
 var statusArray = [];
-var arr, temp_value;
+var arr, temp_value, motion;
 
 $(document).ready(function(){
 	var url = window.location.host;
@@ -57,6 +57,9 @@ $(document).ready(function(){
         }
     });
             }
+        } else if (arr[1] == "motion"){
+            $('#motion_'+arr[0]).text(arr[2]);
+            motion = arr[2];
         }
     }
 
@@ -83,9 +86,11 @@ $(document).ready(function(){
          } else if (typeArray[i] == "analog") {
             deviceStatus.status = temp_value;
             // console.log(arr[2]);
+        } else if (typeArray[i] == "motion"){
+             deviceStatus.status = motion;
         }
          statusArray.push(deviceStatus);
-    }
+        }
     }, 2500);
 
 setTimeout(function() {

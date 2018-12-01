@@ -125,7 +125,7 @@
     <% } else if (deviceType[i] == "motion") { %>
       <li>
       <div class = "square">
-                <p id="motion-detect">ON</p>
+                <p id="motion_<%= idArr[i] %>">ON</p>
       </div>
 
       <form method="POST" action="room/device" class="nameArr">
