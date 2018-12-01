@@ -18,9 +18,6 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
       break;
     case WStype_TEXT: 
       Serial.printf("[WSc] get text: %s\n", payload);
-      if(strcmp((char*)payload, "motion_received") == 0){
-        received = 1;
-      }
       break; 
     case WStype_BIN:
       Serial.printf("[WSc] get binary length: %u\n", length);
