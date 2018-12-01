@@ -51,18 +51,20 @@ $(document).ready(function(){
             $('#temp_'+arr[0]).text(arr[3]+"°C");
             temp_value = arr[3];
             ws.send("temp_received");
-            if (arr[3] >32) {
-                $.ajax({url: "app/app.email", type:"POST",
-            async: true,
-            contentType: "application/json",
-            data: JSON.stringify({mailData: arr[3]}),
-            success: function(result){
-            // console.log(result);
-        }
-    });
+            if( constTemp != temp_value){
+                if (arr[3] >32) {
+                    $.ajax({url: "app/app.email", type:"POST",
+                    async: true,
+                    contentType: "application/json",
+                    data: JSON.stringify({mailData: arr[3]}),
+                    success: function(result){
+                    }
+            });
+                    constTemp = temp_value;
             }
-        } 
-    }
+        }    
+    } 
+}
 
      $("input").click(function(){
         ledID = $(this).attr("id"); // get id of an on-click variable id
