@@ -41,6 +41,10 @@ $(document).ready(function(){
         else if (arr[1] == "LED_ON") {
         	$('#'+arr[0]).attr('checked', true);            
             ws.send(arr[0]+"&received");
+        } else if (arr[1] == "motion"){
+            console.log("motion");
+            $('#motion_'+arr[0]).text(arr[2]);
+            motion = arr[2];
         }
     }  else if (arr[1] == "analog"){
             // console.log("temp value"+arr[2]);
@@ -57,11 +61,7 @@ $(document).ready(function(){
         }
     });
             }
-        } else if (arr[1] == "motion"){
-            console.log("motion");
-            $('#motion_'+arr[0]).text(arr[2]);
-            motion = arr[2];
-        }
+        } 
     }
 
      $("input").click(function(){

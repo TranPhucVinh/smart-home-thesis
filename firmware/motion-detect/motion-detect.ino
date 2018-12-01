@@ -54,6 +54,7 @@ void loop() {
   {
     sendStatus = sendStatusTemp;
     webSocket.sendTXT(sendStatus);
+    Serial.println(sendStatus);
   }
   delay(1000);
 }
