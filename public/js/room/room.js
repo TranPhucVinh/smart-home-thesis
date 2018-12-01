@@ -58,6 +58,7 @@ $(document).ready(function(){
     });
             }
         } else if (arr[1] == "motion"){
+            console.log("motion");
             $('#motion_'+arr[0]).text(arr[2]);
             motion = arr[2];
         }
@@ -88,6 +89,7 @@ $(document).ready(function(){
             // console.log(arr[2]);
         } else if (typeArray[i] == "motion"){
              deviceStatus.status = motion;
+              console.log(motion);
         }
          statusArray.push(deviceStatus);
         }

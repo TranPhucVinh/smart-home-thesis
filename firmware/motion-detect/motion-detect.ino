@@ -43,6 +43,7 @@ void setup() {
 
 void loop() {
   motion = analogRead(A0);
+  webSocket.loop();
   if ((motion>60)&&(motion<80)&&(received==0))
   {
     sendStatusTemp = "id_28&motion&ON";
