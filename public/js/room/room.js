@@ -3,7 +3,7 @@ var ws;
 var i;
 var deviceArray = [], idArray = [], typeArray = [];
 var statusArray = [];
-var arr, temp_value, motion;
+var arr, temp_value, constTemp, motion;
 
 $(document).ready(function(){
 	var url = window.location.host;
