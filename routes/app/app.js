@@ -8,6 +8,8 @@ const urlencodedParser = bodyparser.urlencoded({ extended: false });
 const pool = require('./../../database/database');
 const jsonParser = bodyparser.json();
 
+var constMailData;
+
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -200,13 +202,16 @@ function emailSent(req, res) {
   text: 'Alert !!! Temperature is higher than 32°C, temperature now'+receiveData
 };
 
-transporter.sendMail(mailOptions, function(error, info){
-  if (error) {
-    console.log(error);
-  } else {
-    console.log('Email sent: ' + info.response);
+if (constMailData != receiveData) {
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+      console.log(error);
+    } else {
+      console.log('Email sent: ' + info.response);
+    }
+    });
+    constMailData = receiveData;
   }
-});
 }
 
 module.exports = router; 
