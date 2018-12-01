@@ -90,8 +90,9 @@ $(document).ready(function(){
         } else if (typeArray[i] == "motion"){
             if (motion == undefined){
                 deviceStatus.status = "OFF";
-            }
+            } else {
              deviceStatus.status = motion;
+                }
             }
          statusArray.push(deviceStatus);
         }
