@@ -88,8 +88,11 @@ $(document).ready(function(){
             deviceStatus.status = temp_value;
             // console.log(arr[2]);
         } else if (typeArray[i] == "motion"){
+            if (motion == undefined){
+                deviceStatus.status = "OFF";
+            }
              deviceStatus.status = motion;
-              console.log(motion);
+            }
         }
          statusArray.push(deviceStatus);
         }
