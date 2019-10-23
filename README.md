@@ -41,7 +41,7 @@
     - Username, password
     - User's house, room, floor, devices
 
-### Devices comtrol and telemetry handler
+### Devices control and telemetry handler
 
 * Device element on Room webpage get ID through SQL execution then form its own id on the webpage
 * Firmware use this ID to interact with device on room webpage (for digital devices)
