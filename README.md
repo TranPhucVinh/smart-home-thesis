@@ -51,3 +51,8 @@
 
 * Heroku free service
 * Website: https://smarthome-thesis-bku.herokuapp.com
+
+### Existed issues
+
+* Duplicate information doesn't display when submit "POST".
+* Can't handle with duplicate value in House, Floor, Room.
